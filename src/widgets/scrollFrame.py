@@ -1,15 +1,11 @@
 """
-The ClassifierFrane is a customtkinter frame that encompass all input fields related
-to classifiers. Two of those should be instantiated, one for the base clasifier, one
-for the deferral classifier.
+The ScrollFrame is a generic frame that has a scrollable menu and display new fields depending on
+selected values.
 """
 
 import customtkinter as ctk
 from constants import Models, MODEL_FRAMES
-from CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
-
-
-
+from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 
 class ScrollFrame(ctk.CTkFrame):
     """
@@ -71,3 +67,7 @@ class ScrollFrame(ctk.CTkFrame):
             self.frames[self.current_frame].grid_remove()
         self.current_frame = frame
         self.frames[frame].grid(row=2, column=0, padx=10, pady=10, sticky="ews")
+
+
+    def get(self):
+        return self.current_frame, self.frames[self.current_frame].get()
