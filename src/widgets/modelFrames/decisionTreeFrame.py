@@ -19,7 +19,6 @@ class DecisionTreeFrame(ctk.CTkFrame):
 
         self.labels = [] # List of labels (for entries)
         self.entries = [] # List of entry fields
-        self.ctkScroll = [] # List of ctk scrollmenu (Necessary to avoid error messages)
 
         # Criterion entry: Scrollable menu
         self.labels.append(ctk.CTkLabel(self, text="Criterion"))
@@ -28,7 +27,7 @@ class DecisionTreeFrame(ctk.CTkFrame):
         self.scrollValues = ["gini", "entropy", "log_loss"]
         self.entries.append(ctk.CTkOptionMenu(self, width=200, values=["gini"]))
         self.entries[-1].grid(row=0, column=1, padx=10, pady=10, sticky="we")
-        self.ctkScroll.append(CTkScrollableDropdown(self.entries[-1], values=self.scrollValues))
+        CTkScrollableDropdown(self.entries[-1], values=self.scrollValues)
 
         # Maximum depth of trees
         self.labels.append(ctk.CTkLabel(self, text="Maximum depth"))

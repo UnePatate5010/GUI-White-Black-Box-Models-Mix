@@ -47,7 +47,7 @@ class CTkScrollableDropdown(customtkinter.CTkToplevel):
 
         self.hide = True
         self.attach.bind('<Configure>', lambda e: self._withdraw() if not self.disable else None, add="+")
-        self.attach.winfo_toplevel().bind('<Configure>', lambda e: self._withdraw() if not self.disable else None, add="+")
+        # self.attach.winfo_toplevel().bind('<Configure>', lambda e: self._withdraw() if not self.disable else None, add="+")
         self.attach.winfo_toplevel().bind("<ButtonPress>", lambda e: self._withdraw() if not self.disable else None, add="+")        
    
         
