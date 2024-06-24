@@ -1,0 +1,6 @@
+numpy
+matplotlib
+sklearn
+imbalanced-learn
+tkinter
+customtkinter
