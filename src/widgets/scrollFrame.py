@@ -12,16 +12,22 @@ from CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import 
 
 
 class ScrollFrame(ctk.CTkFrame):
+    """
+    This class represents a frame with a scollable menu. The said menu is constitued of provided elements.
+    The frame display input fields depending on the element selected in the scrollable menu.
+    
+    :param master: the master frame/window of this frame
+    :param name: displayed name at the top of the frame, default to "Scrollable Frame"
+    :type name: str, optional
+    :param models: list of models names (strings), used for display and frames loading, default to []
+    :type models: [str]
+    """
+        
     def __init__(self, master, name="Scrollable Frame", models=[]):
         """
-        Initialisation method
-
-        :param master: the master frame/window of this frame
-        :param name: displayed name at the top of the frame, default to "Scrollable Frame"
-        :type name: str
-        :param models: list of models names (strings), used for display and frames loading
-        :type models: [str]
+        Constructor method
         """
+
         super().__init__(master)
 
         self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
@@ -43,16 +49,25 @@ class ScrollFrame(ctk.CTkFrame):
         for i in self.scrollValues:
             self.frames[i] = MODEL_FRAMES[i](self)
     
-    def on_dropdown_select(self, selected_value):
+    def on_dropdown_select(self, frame):
         """
         Modify the displayed value on the scrollable menu and update displayed fields
+
+        :param frame: selected element in the scrollable menu to display fields
+        :type frame: str
         """
-        self.optionmenu.set(selected_value)  
-        self.update_fields(selected_value)
+        self.optionmenu.set(frame)  
+        self.update_fields(frame)
 
 
-    def update_fields(self, selected_value):
+    def update_fields(self, frame):
+        """
+        Update displayed fields depending on the provided frame name
+
+        :param frame: selected element in the scrollable menu to display fields
+        :type frame: str
+        """
         if self.current_frame != None:
             self.frames[self.current_frame].grid_remove()
-        self.current_frame = selected_value
-        self.frames[selected_value].grid(row=2, column=0, padx=10, pady=10, sticky="ews")
+        self.current_frame = frame
+        self.frames[frame].grid(row=2, column=0, padx=10, pady=10, sticky="ews")
