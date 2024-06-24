@@ -8,7 +8,12 @@ class GUI(ctk.CTk):
         super().__init__()  
         self._state_before_windows_set_titlebar_color = "zoomed"
         self.title("GUI")
-
+        
+        # This part is for Ubuntu because for some reason previous lines don't work
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        self.geometry(f"{screen_width}x{screen_height}")
+        
         # Grid specification
         self.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
         self.grid_rowconfigure((0, 1, 2, 3, 4, 5), weight=1)
