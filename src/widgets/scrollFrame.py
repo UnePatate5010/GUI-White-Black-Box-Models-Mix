@@ -24,6 +24,8 @@ class ScrollFrame(ctk.CTkFrame):
         """
         super().__init__(master)
 
+        self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
+
         # Display frame name
         ctk.CTkLabel(self, text=name).grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
 
