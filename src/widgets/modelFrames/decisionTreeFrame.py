@@ -3,11 +3,13 @@ This frame is displayed when a Decision Tree classifier is selected, providing f
 hyperparameters.
 """
 
+import tkinter as tk
 import customtkinter as ctk
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 from widgets.CTkSpinbox.CtkSpinbox import Spinbox
+from widgets.modelFrames.model import Model
 
-class DecisionTreeFrame(ctk.CTkFrame):
+class DecisionTreeFrame(ctk.CTkFrame, Model):
     """
     Frame containing all entry fields for Decision Tree Clasifier.
 
@@ -15,10 +17,8 @@ class DecisionTreeFrame(ctk.CTkFrame):
     """
 
     def __init__(self, master):
-        super().__init__(master)
-
-        self.labels = [] # List of labels (for entries)
-        self.entries = [] # List of entry fields
+        ctk.CTkFrame.__init__(self, master)
+        Model.__init__(self)
 
         # Criterion entry: Scrollable menu
         self.labels.append(ctk.CTkLabel(self, text="Criterion"))
@@ -44,12 +44,3 @@ class DecisionTreeFrame(ctk.CTkFrame):
         self.entries.append(ctk.CTkOptionMenu(self, width=200, values=["best"]))
         self.entries[-1].grid(row=3, column=1, padx=10, pady=10, sticky="we")
         CTkScrollableDropdown(self.entries[-1], values=self.scrollValues)
-
-
-
-    def get(self):
-        dic = {}
-        for i in range(len(self.entries)):
-            dic.update({self.labels[i].cget("text"): self.entries[i].get()})
-        return dic
-

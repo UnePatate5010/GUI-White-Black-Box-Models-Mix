@@ -71,3 +71,24 @@ class Spinbox(ctk.CTkFrame):
             self.entry.insert(0, "None")
         else:
             self.entry.insert(0, str(float(value)))
+
+
+    def configure(self, **kwargs):
+        if "state" in kwargs:
+            self.state = kwargs.pop("state")
+            if self.state == "disabled":
+                self.disable()
+            elif self.state == "normal":
+                self.enable()
+        
+        super().configure(kwargs)
+
+    def disable(self):
+        self.entry.configure(state='disabled')
+        self.add_button.configure(state='disabled')
+        self.subtract_button.configure(state='disabled')
+    
+    def enable(self):
+        self.entry.configure(state='normal')
+        self.add_button.configure(state='normal')
+        self.subtract_button.configure(state='normal')
