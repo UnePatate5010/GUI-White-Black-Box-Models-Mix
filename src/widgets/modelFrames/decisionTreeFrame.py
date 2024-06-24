@@ -35,7 +35,17 @@ class DecisionTreeFrame(ctk.CTkFrame):
         self.entries.append(Spinbox(self))
         self.entries[-1].set(None) # Default value
         self.entries[-1].grid(row=2, column=1, padx=20, pady=20, sticky="we")
-    
+
+        # Splitter entry: Scrollable menu
+        self.labels.append(ctk.CTkLabel(self, text="Splitter"))
+        self.labels[-1].grid(row=3, column=0, padx=20, pady=20, sticky="w")
+
+        self.scrollValues = ["best", "random"]
+        self.entries.append(ctk.CTkOptionMenu(self, width=200, values=["best"]))
+        self.entries[-1].grid(row=3, column=1, padx=10, pady=10, sticky="we")
+        CTkScrollableDropdown(self.entries[-1], values=self.scrollValues)
+
+
 
     def get(self):
         dic = {}
