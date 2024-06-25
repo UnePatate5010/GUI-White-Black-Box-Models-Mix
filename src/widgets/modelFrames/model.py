@@ -2,7 +2,7 @@
 Base Class for models frames. It brings several attributes and methods used in the different frames -> refactoring
 """
 
-class Model:
+class Model():
     def __init__(self):
         self.labels = [] # List of labels (for entries)
         self.entries = [] # List of entry fields

@@ -19,12 +19,14 @@ class RandomForestFrame(ctk.CTkFrame, Model):
         ctk.CTkFrame.__init__(self, master)
         Model.__init__(self)
 
+        self.grid_columnconfigure((1), weight=1)
+
         # Criterion entry: Scrollable menu
         self.labels.append(ctk.CTkLabel(self, text="Criterion"))
         self.labels[-1].grid(row=0, column=0, padx=20, pady=20, sticky="w")
 
         self.scrollValues = ["gini", "entropy", "log_loss"]
-        self.entries.append(ctk.CTkOptionMenu(self, width=200, values=["gini"]))
+        self.entries.append(ctk.CTkOptionMenu(self, values=["gini"]))
         self.entries[-1].grid(row=0, column=1, padx=10, pady=10, sticky="we")
         CTkScrollableDropdown(self.entries[-1], values=self.scrollValues, hover_color="red")
 

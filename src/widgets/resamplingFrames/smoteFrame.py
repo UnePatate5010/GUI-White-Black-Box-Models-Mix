@@ -8,6 +8,8 @@ class SMOTEFrame(ctk.CTkFrame, Model):
         ctk.CTkFrame.__init__(self, master)
         Model.__init__(self)
 
+        self.grid_columnconfigure((1), weight=1)
+
         # k neighbors entry: spinbox menu
         self.labels.append(ctk.CTkLabel(self, text="Criterion"))
         self.labels[-1].grid(row=0, column=0, padx=20, pady=20, sticky="w")
