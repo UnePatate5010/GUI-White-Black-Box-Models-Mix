@@ -19,16 +19,16 @@ class GUI(ctk.CTk):
         self.grid_rowconfigure((0, 1, 2, 3, 4, 5), weight=1)
         
         # Grader frame
-        self.base = ScrollFrame(self, "Grader", Models.CLASSIFIERS.value)
-        self.base.grid(row=3, rowspan=3, column=1, padx=10, pady=10, sticky="ewns")
+        self.grader = ScrollFrame(self, "Grader", Models.CLASSIFIERS.value)
+        self.grader.grid(row=3, rowspan=3, column=1, padx=10, pady=10, sticky="ewns")
 
         # Base classifier frame
         self.base = ScrollFrame(self, "Base Classifier", Models.CLASSIFIERS.value)
         self.base.grid(row=3, rowspan=3, column=2, padx=10, pady=10, sticky="ewns")
 
         # Deferral classifier frame
-        self.base = ScrollFrame(self, "Base Classifier", Models.CLASSIFIERS.value)
-        self.base.grid(row=3, rowspan=3, column=3, padx=10, pady=10, sticky="ewns")
+        self.deferral = ScrollFrame(self, "Base Classifier", Models.CLASSIFIERS.value)
+        self.deferral.grid(row=3, rowspan=3, column=3, padx=10, pady=10, sticky="ewns")
 
 window = GUI()
 window.mainloop()

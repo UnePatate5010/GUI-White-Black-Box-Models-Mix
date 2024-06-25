@@ -76,3 +76,19 @@ class ScrollFrame(ctk.CTkFrame):
 
     def get(self):
         return self.current_frame, self.frames[self.current_frame].get()
+    
+    def freeze(self):
+        """
+        Freeze all fields (disable)
+        """
+        self.optionmenu.configure(state='disabled')
+        if self.current_frame != None:
+            self.frames[self.current_frame].freeze()
+
+    def unfreeze(self):
+        """
+        Unfreeze all fields (enable)
+        """
+        self.optionmenu.configure(state='normal')
+        if self.current_frame != None:
+            self.frames[self.current_frame].unfreeze()
