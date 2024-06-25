@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from widgets.scrollFrame import ScrollFrame
+from widgets.runFrame import RunFrame
 from constants import Models
 
 
@@ -9,7 +10,7 @@ class GUI(ctk.CTk):
         self._state_before_windows_set_titlebar_color = "zoomed"
         self.title("GUI")
         
-        # This part is for Ubuntu because for some reason previous lines don't work
+        # This part is for Ubuntu because for some reason previous lines don't work (Works fine on Windows)
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
         self.geometry(f"{screen_width}x{screen_height}")
@@ -19,7 +20,7 @@ class GUI(ctk.CTk):
         self.grid_rowconfigure((0, 1, 2, 3, 4, 5), weight=1)
         
         # Grader frame
-        self.grader = ScrollFrame(self, "Grader", Models.CLASSIFIERS.value)
+        self.grader = ScrollFrame(self, "Grader", Models.GRADERS.value)
         self.grader.grid(row=3, rowspan=3, column=1, padx=10, pady=10, sticky="ewns")
 
         # Base classifier frame
@@ -29,6 +30,10 @@ class GUI(ctk.CTk):
         # Deferral classifier frame
         self.deferral = ScrollFrame(self, "Base Classifier", Models.CLASSIFIERS.value)
         self.deferral.grid(row=3, rowspan=3, column=3, padx=10, pady=10, sticky="ewns")
+
+        # Run button
+        self.run = RunFrame(self)
+        self.run.grid(row=5, column=4, padx=10, pady=10, sticky="news")
 
 window = GUI()
 window.mainloop()
