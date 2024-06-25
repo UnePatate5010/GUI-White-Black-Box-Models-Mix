@@ -48,6 +48,13 @@ class GUI(ctk.CTk):
         self.graph = GraphFrame(self)
         self.graph.grid(row=0, rowspan=4, column=0, columnspan=3, padx=10, pady=10, sticky="news")
 
+        # Schema frame PLACEHOLDER
+        self.schema = GraphFrame(self)
+        self.schema.grid(row=0, rowspan=3, column=3, columnspan=2, padx=10, pady=10, sticky="news")
+
+        # Stats frame PLACEHOLDER
+        self.stats = GraphFrame(self)
+        self.stats.grid(row=3, column=3, columnspan=2, padx=10, pady=10, sticky="news")
 
     def freeze(self):
         self.dataset.freeze()
