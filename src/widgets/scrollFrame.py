@@ -32,7 +32,7 @@ class ScrollFrame(ctk.CTkFrame):
         ctk.CTkLabel(self, text=name).grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
 
         # Values of the scrollable menu
-        self.scrollValues = Models.CLASSIFIERS.value
+        self.scrollValues = models
 
         # Scrollable menu
         self.optionmenu = ctk.CTkOptionMenu(self, width=300, values=["Select a classifier"])
