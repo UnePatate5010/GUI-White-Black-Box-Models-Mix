@@ -40,10 +40,8 @@ class ScrollFrame(ctk.CTkFrame):
         self.ctkscroll = CTkScrollableDropdown(self.optionmenu, values=self.scrollValues, command=self.on_dropdown_select)
 
         # Set up frames
-        self.current_frame = None
-        self.frames = {}
-        for i in self.scrollValues:
-            self.frames[i] = MODEL_FRAMES[i](self)
+        self.current_frame = None # Name of the frame currently displayed
+        self.frames = {} # Dictionnary associating frame name to frame class
     
     def on_dropdown_select(self, frame):
         """
@@ -63,8 +61,15 @@ class ScrollFrame(ctk.CTkFrame):
         :param frame: selected element in the scrollable menu to display fields
         :type frame: str
         """
+        # Remove current displayed frame if existing
         if self.current_frame != None:
             self.frames[self.current_frame].grid_remove()
+
+        # Instantiate the frame if not already existing (and stored in self.frames)
+        if frame not in self.frames:
+            self.frames[frame] =  MODEL_FRAMES[frame](self)
+
+
         self.current_frame = frame
         self.frames[frame].grid(row=2, column=0, padx=10, pady=10, sticky="ews")
 

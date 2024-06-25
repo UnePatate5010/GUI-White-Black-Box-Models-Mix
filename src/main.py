@@ -17,7 +17,7 @@ class GUI(ctk.CTk):
         # Grid specification
         self.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
         self.grid_rowconfigure((0, 1, 2, 3, 4, 5), weight=1)
-
+        
         # Grader frame
         self.base = ScrollFrame(self, "Grader", Models.CLASSIFIERS.value)
         self.base.grid(row=3, rowspan=3, column=1, padx=10, pady=10, sticky="ewns")
