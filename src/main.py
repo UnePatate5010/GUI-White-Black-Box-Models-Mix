@@ -48,5 +48,22 @@ class GUI(ctk.CTk):
         self.graph = GraphFrame(self)
         self.graph.grid(row=0, rowspan=4, column=0, columnspan=3, padx=10, pady=10, sticky="news")
 
+
+    def freeze(self):
+        self.dataset.freeze()
+        self.grader.freeze()
+        self.base.freeze()
+        self.deferral.freeze()
+        self.resampling.freeze()
+        self.run.freeze()
+
+    def unfreeze(self):
+        self.dataset.unfreeze()
+        self.grader.unfreeze()
+        self.base.unfreeze()
+        self.deferral.unfreeze()
+        self.resampling.unfreeze()
+        self.run.unfreeze()
+
 window = GUI()
 window.mainloop()
