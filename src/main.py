@@ -33,8 +33,12 @@ class GUI(ctk.CTk):
         self.base.grid(row=4, rowspan=3, column=2, padx=10, pady=10, sticky="ewns")
 
         # Deferral classifier frame
-        self.deferral = ScrollFrame(self, "Base Classifier", Models.CLASSIFIERS.value)
+        self.deferral = ScrollFrame(self, "Deferral Classifier", Models.CLASSIFIERS.value)
         self.deferral.grid(row=4, rowspan=3, column=3, padx=10, pady=10, sticky="ewns")
+
+        # Resampling methods
+        self.resampling = ScrollFrame(self, "Resampling method", Models.RESAMPLING.value)
+        self.resampling.grid(row=4, rowspan=2, column=4, padx=10, pady=10, sticky="ewns")
 
         # Run button
         self.run = RunFrame(self)

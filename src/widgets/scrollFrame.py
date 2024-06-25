@@ -4,7 +4,7 @@ selected values.
 """
 
 import customtkinter as ctk
-from constants import Models, MODEL_FRAMES
+from constants import Models, BOTH
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 
 class ScrollFrame(ctk.CTkFrame):
@@ -67,7 +67,7 @@ class ScrollFrame(ctk.CTkFrame):
 
         # Instantiate the frame if not already existing (and stored in self.frames)
         if frame not in self.frames:
-            self.frames[frame] =  MODEL_FRAMES[frame](self)
+            self.frames[frame] =  BOTH[frame](self)
 
 
         self.current_frame = frame
