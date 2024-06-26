@@ -1,3 +1,6 @@
+"""
+This file contains diverse arrays and dictionnaries used to display scrollable menus and instantiate some frame frome strings 
+"""
 from enum import Enum
 from widgets.modelFrames.decisionTreeFrame import DecisionTreeFrame
 from widgets.modelFrames.randomForestFrame import RandomForestFrame
@@ -19,5 +22,5 @@ ALL = dict(MODEL_FRAMES, **RESAMPLING_FRAMES)
 class ScrollLists(Enum):
     CLASSIFIERS = ["Decision tree", "Random forest"] # List of available classifier
     GRADERS = ["Decision tree", "Random forest"] # List of available grader
-    RESAMPLING = ["SMOTE"] # List of available
-    DATASETS = ["Corner"]
+    RESAMPLING = ["SMOTE"] # List of available resampling methods
+    DATASETS = ["Corner"] # List of available datasets

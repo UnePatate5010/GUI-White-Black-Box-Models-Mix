@@ -1,3 +1,6 @@
+"""
+This file provide a frame to input hyperparameters of the SMOTE algorithm
+"""
 import customtkinter as ctk
 from widgets.modelFrames.model import Model
 from widgets.CTkSpinbox.CtkSpinbox import Spinbox

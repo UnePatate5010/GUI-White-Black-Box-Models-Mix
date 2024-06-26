@@ -3,6 +3,9 @@ from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown
 from constants import ScrollLists
 
 class DatasetFrame(ctk.CTkFrame):
+    """
+    Frame used to select a dataset for the experiment.
+    """
 
     def __init__(self, master):
         """

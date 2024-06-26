@@ -78,6 +78,12 @@ class ScrollFrame(ctk.CTkFrame):
 
 
     def get(self):
+        """
+        Method called to retrieve input data from the frame itself and inner frames.
+
+        :returns: the selected element in the scrollable menu and a dictionnary from the corresponding inner frame
+        :rtype: str, dict
+        """
         return self.current_frame, self.frames[self.current_frame].get()
     
     def freeze(self):
