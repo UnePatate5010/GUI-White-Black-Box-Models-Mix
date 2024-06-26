@@ -8,7 +8,7 @@ class RunFrame(ctk.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
-        self.run_button = ctk.CTkButton(self, text="RUN", command=self.button_callback, fg_color="#1b9290")
+        self.run_button = ctk.CTkButton(self, text="RUN", command=self.button_callback, fg_color="#6aa51f")
         self.run_button.grid(row=0, column=0, padx=10, pady=10, sticky="news")
     
     def button_callback(self):
