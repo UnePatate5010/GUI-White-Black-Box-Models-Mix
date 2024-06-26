@@ -1,8 +1,9 @@
 import customtkinter as ctk
 from widgets.scrollFrame import ScrollFrame
+from widgets.dataset.datasetFrame import DatasetFrame
 from widgets.runFrame import RunFrame
 from widgets.outputFrames.graphFrame import GraphFrame
-from constants import Models
+from constants import ScrollLists
 
 
 class GUI(ctk.CTk):
@@ -23,23 +24,23 @@ class GUI(ctk.CTk):
         # ========== Input frames ========== #
         
         # Dataset Frame
-        self.dataset = ScrollFrame(self, "Placeholder", [])
+        self.dataset = DatasetFrame(self)
         self.dataset.grid(row=4, rowspan=3, column=0, padx=10, pady=10, sticky="ewns")
 
         # Grader frame
-        self.grader = ScrollFrame(self, "Grader", Models.GRADERS.value)
+        self.grader = ScrollFrame(self, "Grader", ScrollLists.GRADERS.value)
         self.grader.grid(row=4, rowspan=3, column=1, padx=10, pady=10, sticky="ewns")
 
         # Base classifier frame
-        self.base = ScrollFrame(self, "Base Classifier", Models.CLASSIFIERS.value)
+        self.base = ScrollFrame(self, "Base Classifier", ScrollLists.CLASSIFIERS.value)
         self.base.grid(row=4, rowspan=3, column=2, padx=10, pady=10, sticky="ewns")
 
         # Deferral classifier frame
-        self.deferral = ScrollFrame(self, "Deferral Classifier", Models.CLASSIFIERS.value)
+        self.deferral = ScrollFrame(self, "Deferral Classifier", ScrollLists.CLASSIFIERS.value)
         self.deferral.grid(row=4, rowspan=3, column=3, padx=10, pady=10, sticky="ewns")
 
         # Resampling methods
-        self.resampling = ScrollFrame(self, "Resampling method", Models.RESAMPLING.value)
+        self.resampling = ScrollFrame(self, "Resampling method", ScrollLists.RESAMPLING.value)
         self.resampling.grid(row=4, rowspan=2, column=4, padx=10, pady=10, sticky="ewns")
 
         # Run button
@@ -59,7 +60,7 @@ class GUI(ctk.CTk):
         # Stats frame PLACEHOLDER
         self.stats = GraphFrame(self)
         self.stats.grid(row=3, column=3, columnspan=2, padx=10, pady=10, sticky="news")
-        
+
 
     def freeze(self):
         self.dataset.freeze()

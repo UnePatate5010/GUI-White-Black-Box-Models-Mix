@@ -4,7 +4,7 @@ selected values.
 """
 
 import customtkinter as ctk
-from constants import Models, BOTH
+from constants import ALL
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 
 class ScrollFrame(ctk.CTkFrame):
@@ -37,7 +37,7 @@ class ScrollFrame(ctk.CTkFrame):
         self.scrollValues = models
 
         # Scrollable menu
-        self.optionmenu = ctk.CTkOptionMenu(self, width=250, values=["Select a classifier"])
+        self.optionmenu = ctk.CTkOptionMenu(self, width=250, values=["Select a classifier"], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
         self.optionmenu.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
         self.ctkscroll = CTkScrollableDropdown(self.optionmenu, values=self.scrollValues, command=self.on_dropdown_select)
 
@@ -54,6 +54,7 @@ class ScrollFrame(ctk.CTkFrame):
         """
         self.optionmenu.set(frame)  
         self.update_fields(frame)
+        self.optionmenu.configure(fg_color="#1f6aa5", button_color="#144870", button_hover_color="#203a4f")
 
 
     def update_fields(self, frame):
@@ -69,7 +70,7 @@ class ScrollFrame(ctk.CTkFrame):
 
         # Instantiate the frame if not already existing (and stored in self.frames)
         if frame not in self.frames:
-            self.frames[frame] =  BOTH[frame](self)
+            self.frames[frame] =  ALL[frame](self)
 
 
         self.current_frame = frame
