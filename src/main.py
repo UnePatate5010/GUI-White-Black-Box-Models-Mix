@@ -19,6 +19,8 @@ class GUI(ctk.CTk):
         # Grid specification
         self.grid_columnconfigure((0, 1, 2, 3, 4), weight=1)
         self.grid_rowconfigure((0, 1, 2, 3, 4, 5, 6), weight=1)
+
+        # ========== Input frames ========== #
         
         # Dataset Frame
         self.dataset = ScrollFrame(self, "Placeholder", [])
@@ -44,6 +46,8 @@ class GUI(ctk.CTk):
         self.run = RunFrame(self)
         self.run.grid(row=6, column=4, padx=10, pady=10, sticky="news")
 
+        # ========== Output frames ========== #
+
         # Graph frame
         self.graph = GraphFrame(self)
         self.graph.grid(row=0, rowspan=4, column=0, columnspan=3, padx=10, pady=10, sticky="news")
@@ -55,6 +59,7 @@ class GUI(ctk.CTk):
         # Stats frame PLACEHOLDER
         self.stats = GraphFrame(self)
         self.stats.grid(row=3, column=3, columnspan=2, padx=10, pady=10, sticky="news")
+        
 
     def freeze(self):
         self.dataset.freeze()
