@@ -14,6 +14,10 @@ class RunFrame(ctk.CTkFrame):
     def button_callback(self):
         # print(self.master.base.get()) # Example use
         pass
+        # Get methods and hyperparameters
+        # Format them correctly (convert dicts to reflect real arguments names)
+        # Call the main function
+        # Update output frames with results
 
     def freeze(self):
         self.run_button.configure(state="disabled")

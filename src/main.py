@@ -72,5 +72,17 @@ class GUI(ctk.CTk):
         self.resampling.unfreeze()
         self.run.unfreeze()
 
+    def get(self):
+        """
+        :rtype: {str: (str:{})}
+        """
+        dic = {}
+        dic["dataset"] = self.dataset.get()
+        dic["grader"] = self.grader.get()
+        dic["base"] = self.base.get()
+        dic["deferral"] = self.datadeferralset.get()
+        dic["resampling"] = self.resampling.get()
+        return dic
+
 window = GUI()
 window.mainloop()
