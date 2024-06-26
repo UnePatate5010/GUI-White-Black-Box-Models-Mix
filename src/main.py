@@ -8,7 +8,7 @@ from constants import Models
 class GUI(ctk.CTk):
     def __init__(self):
         super().__init__()  
-        self._state_before_windows_set_titlebar_color = "zoomed"
+        self._state_before_windows_set_titlebar_color = "zoomed" # Maximiwe the window
         self.title("GUI")
         
         # This part is for Ubuntu because for some reason previous lines don't work (Works fine on Windows)

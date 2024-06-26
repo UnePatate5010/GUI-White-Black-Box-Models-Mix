@@ -28,6 +28,7 @@ class ScrollFrame(ctk.CTkFrame):
 
         self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
         self.grid_columnconfigure(0, weight=1)
+        self.grid_rowconfigure(2, weight=1)
 
         # Display frame name
         ctk.CTkLabel(self, text=name).grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
@@ -72,7 +73,7 @@ class ScrollFrame(ctk.CTkFrame):
 
 
         self.current_frame = frame
-        self.frames[frame].grid(row=2, column=0, padx=10, pady=10, sticky="nsew")
+        self.frames[frame].grid(row=2, column=0, padx=10, pady=10, sticky="ewns")
 
 
     def get(self):
