@@ -24,14 +24,15 @@ class RunFrame(ctk.CTkFrame):
         # Get methods and hyperparameters
         try:
             input = self.master.get()
-            # print(input)
+            print(input)
         except UnselectedItemError as e:
             print(f"Missing an element. Please select a {e.missing}")
+            self.master.unfreeze()
             return
 
         # Format them correctly (convert dicts to reflect real arguments names)
-        grader, base, deferral, resampling = translateAndInstantiate(input)
-        print(grader, base, deferral, resampling)
+        (X, y), grader, base, deferral, resampling = translateAndInstantiate(input)
+        print(X, y, grader, base, deferral, resampling)
 
 
         # Call the main function

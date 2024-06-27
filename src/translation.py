@@ -1,6 +1,7 @@
 """
 This file allows to translate human readable arguments to function arguments names
 """
+from datasets.loadDataset import loadDataset
 from models.decisionTree import decisionTree
 from models.randomForest import randomForest
 from resamplingMethods.smote import smote
@@ -8,6 +9,9 @@ from resamplingMethods.smote import smote
 # Link a method name (human readable) to a tuple of a dicitonnary that translate human readable arguments
 # to real arguments names and the corresponding function that instanciate such model
 mappings = {
+    # ========== Datasets ========== #
+    "Corner": "./datasets/corner.csv",
+
     # ========== Models ========== #
     "Decision tree": ({
         "Criterion": "criterion",
@@ -43,7 +47,7 @@ def translate(mapping_key, human_readable_dict):
 
 
 def translateAndInstantiate(input):
-    # dataset = input["dataset"]
+    X, y = loadDataset(mappings[input["dataset"]])
     
     grader = aux(input, "grader")
 
@@ -53,7 +57,7 @@ def translateAndInstantiate(input):
 
     resampling = aux(input, "resampling")
 
-    return grader, base, deferral, resampling
+    return (X, y), grader, base, deferral, resampling
 
 
 def aux(input, key):
