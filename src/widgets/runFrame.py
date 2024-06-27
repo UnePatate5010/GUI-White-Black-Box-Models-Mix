@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from widgets.widgetExceptions import *
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -21,8 +22,8 @@ class RunFrame(ctk.CTkFrame):
         try:
             input = self.master.get()
             # print(input)
-        except KeyError:
-            print("At least one field was not filled")
+        except UnselectedItemError as e:
+            print(f"Missing an element. Please select a {e.missing}")
             return
 
         # Format them correctly (convert dicts to reflect real arguments names)

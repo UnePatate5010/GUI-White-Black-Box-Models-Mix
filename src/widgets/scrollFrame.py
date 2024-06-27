@@ -6,6 +6,7 @@ selected values.
 import customtkinter as ctk
 from constants import ALL
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
+from widgets.widgetExceptions import *
 
 class ScrollFrame(ctk.CTkFrame):
     """
@@ -31,7 +32,8 @@ class ScrollFrame(ctk.CTkFrame):
         self.grid_rowconfigure(2, weight=1)
 
         # Display frame name
-        ctk.CTkLabel(self, text=name).grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
+        self.name = ctk.CTkLabel(self, text=name)
+        self.name.grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
 
         # Values of the scrollable menu
         self.scrollValues = models
@@ -84,6 +86,8 @@ class ScrollFrame(ctk.CTkFrame):
         :returns: the selected element in the scrollable menu and a dictionnary from the corresponding inner frame
         :rtype: str, dict
         """
+        if self.current_frame == None:
+            raise UnselectedItemError("An element was not selected", self.name.cget("text"))
         return self.current_frame, self.frames[self.current_frame].get()
     
     def freeze(self):

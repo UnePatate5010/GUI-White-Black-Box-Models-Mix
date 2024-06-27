@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
+from widgets.widgetExceptions import *
 from constants import ScrollLists
 
 class DatasetFrame(ctk.CTkFrame):
@@ -19,7 +20,8 @@ class DatasetFrame(ctk.CTkFrame):
         self.grid_rowconfigure(2, weight=1)
 
         # Display frame name
-        ctk.CTkLabel(self, text="Dataset").grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
+        self.name = ctk.CTkLabel(self, text="Dataset")
+        self.name.grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
 
         # Values of the scrollable menu
         self.scrollValues = ScrollLists.DATASETS.value
@@ -34,6 +36,8 @@ class DatasetFrame(ctk.CTkFrame):
         self.optionmenu.configure(fg_color="#1f6aa5", button_color="#144870", button_hover_color="#203a4f")
 
     def get(self):
+        if self.optionmenu.get() == "Select a dataset":
+            raise UnselectedItemError("Missing item", self.name.cget("text"))
         return self.optionmenu.get()
     
     def freeze(self):

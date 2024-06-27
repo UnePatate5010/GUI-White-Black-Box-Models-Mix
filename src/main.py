@@ -4,6 +4,7 @@ from widgets.dataset.datasetFrame import DatasetFrame
 from widgets.runFrame import RunFrame
 from widgets.outputFrames.graphFrame import GraphFrame
 from constants import ScrollLists
+from widgets.widgetExceptions import *
 
 
 class GUI(ctk.CTk):
@@ -82,12 +83,30 @@ class GUI(ctk.CTk):
         """
         :rtype: {str: (str:{})}
         """
+        error = []
         dic = {}
-        dic["dataset"] = self.dataset.get()
-        dic["grader"] = self.grader.get()
-        dic["base"] = self.base.get()
-        dic["deferral"] = self.deferral.get()
-        dic["resampling"] = self.resampling.get()
+        try:
+            dic["dataset"] = self.dataset.get()
+        except UnselectedItemError as e:
+            error.append(e.missing)
+        try:
+            dic["grader"] = self.grader.get()
+        except UnselectedItemError as e:
+            error.append(e.missing)
+        try:
+            dic["base"] = self.base.get()
+        except UnselectedItemError as e:
+            error.append(e.missing)
+        try:
+            dic["deferral"] = self.deferral.get()
+        except UnselectedItemError as e:
+            error.append(e.missing)
+        try:
+            dic["resampling"] = self.resampling.get()
+        except UnselectedItemError as e:
+            error.append(e.missing)
+        if len(error):
+            raise UnselectedItemError("Missing items", error)
         return dic
 
 window = GUI()
