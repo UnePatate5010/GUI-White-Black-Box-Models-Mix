@@ -86,7 +86,7 @@ class GUI(ctk.CTk):
         dic["dataset"] = self.dataset.get()
         dic["grader"] = self.grader.get()
         dic["base"] = self.base.get()
-        dic["deferral"] = self.datadeferralset.get()
+        dic["deferral"] = self.deferral.get()
         dic["resampling"] = self.resampling.get()
         return dic
 
