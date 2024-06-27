@@ -45,20 +45,19 @@ def translate(mapping_key, human_readable_dict):
 def translateAndInstantiate(input):
     # dataset = input["dataset"]
     
-    grader = input["grader"]
-    graderDict, graderFunc = translate(*grader)
-    grader = graderFunc(**graderDict)
+    grader = aux(input, "grader")
 
-    base = input["base"]
-    baseDict, baseFunc = translate(*base)
-    base = baseFunc(**baseDict)
+    base = aux(input, "base")
 
-    deferral = input["deferral"]
-    deferralDict, deferralFunc = translate(*deferral)
-    deferral = deferralFunc(**deferralDict)
+    deferral = aux(input, "deferral")
 
-    resampling = input["resampling"]
-    resamplingDict, resamplingFunc = translate(*resampling)
-    resampling = resamplingFunc(**resamplingDict)
+    resampling = aux(input, "resampling")
 
     return grader, base, deferral, resampling
+
+
+def aux(input, key):
+    model = input[key]
+    modelDict, modelFunc = translate(*model)
+    model = modelFunc(**modelDict)
+    return model
