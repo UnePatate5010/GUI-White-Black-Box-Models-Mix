@@ -18,6 +18,9 @@ class RunFrame(ctk.CTkFrame):
         self.run_button.grid(row=0, column=0, padx=10, pady=10, sticky="news")
     
     def button_callback(self):
+        #Freeze all fields
+        self.master.freeze()
+
         # Get methods and hyperparameters
         try:
             input = self.master.get()
@@ -47,6 +50,9 @@ class RunFrame(ctk.CTkFrame):
         canvas = FigureCanvasTkAgg(fig, master = self.master.graph)
         canvas.draw()
         canvas.get_tk_widget().grid(sticky="ewsn")
+
+        # Unfreeze all fields
+        self.master.unfreeze()
 
 
     def freeze(self):
