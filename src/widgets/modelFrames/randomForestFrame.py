@@ -67,7 +67,7 @@ class RandomForestFrame(ctk.CTkScrollableFrame, Model):
         # Criterion entry: Scrollable menu
         self.labels.append(ctk.CTkLabel(self, text="Bootstrap"))
         self.labels[-1].grid(row=6, column=0, padx=20, pady=20, sticky="w")
-        self.scrollValues = ["True", "False"]
+        self.scrollValues = [True, False]
         self.entries.append(ctk.CTkOptionMenu(self, values=["True"]))
         self.entries[-1].grid(row=6, column=1, padx=10, pady=10, sticky="we")
         CTkScrollableDropdown(self.entries[-1], values=self.scrollValues, hover_color="red")

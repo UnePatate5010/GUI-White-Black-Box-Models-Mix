@@ -40,7 +40,7 @@ class Spinbox(ctk.CTkFrame):
         if self.command is not None:
             self.command()
         try:
-            value = float(self.entry.get()) + self.step_size
+            value = int(self.entry.get()) + self.step_size
             self.entry.delete(0, "end")
             self.entry.insert(0, value)
         except ValueError:
@@ -50,18 +50,18 @@ class Spinbox(ctk.CTkFrame):
         if self.command is not None:
             self.command()
         try:
-            value = float(self.entry.get()) - self.step_size
+            value = int(self.entry.get()) - self.step_size
             self.entry.delete(0, "end")
             self.entry.insert(0, value)
         except ValueError:
             return
 
-    def get(self) -> Union[float, None]:
+    def get(self) -> Union[int, None]:
         val = self.entry.get()
         if val == None:
             return None
         try:
-            return float(val)
+            return int(val)
         except ValueError:
             return None
 
@@ -70,7 +70,7 @@ class Spinbox(ctk.CTkFrame):
         if value == None:
             self.entry.insert(0, "None")
         else:
-            self.entry.insert(0, str(float(value)))
+            self.entry.insert(0, str(int(value)))
 
 
     def configure(self, **kwargs):
