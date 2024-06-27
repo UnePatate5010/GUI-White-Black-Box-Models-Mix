@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
+from translation import translate
 
 
 class RunFrame(ctk.CTkFrame):
@@ -18,11 +19,21 @@ class RunFrame(ctk.CTkFrame):
     def button_callback(self):
         # Get methods and hyperparameters
         try:
-            res = self.master.get()
+            input = self.master.get()
+            # print(input)
         except KeyError:
             print("At least one field was not filled")
+            return
 
         # Format them correctly (convert dicts to reflect real arguments names)
+
+        r = input["grader"]
+        dic, func = translate(r[0], r[1])
+        print(dic)
+        model = func(**dic)
+        print(model)
+
+
         # Call the main function
         # Update output frames with results
 

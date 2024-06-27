@@ -4,5 +4,5 @@ File providing a function that returns an instance of an object that resample da
 from imblearn.over_sampling import SMOTE
 
 
-def randomForest(k_neighbors):
+def smote(k_neighbors):
     return SMOTE(k_neighbors=k_neighbors)
