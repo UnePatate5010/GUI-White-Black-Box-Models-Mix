@@ -40,3 +40,25 @@ def translate(mapping_key, human_readable_dict):
     mapping, func = mappings[mapping_key]
     converted_dict = {mapping[k]: v for k, v in human_readable_dict.items()}
     return converted_dict, func
+
+
+def translateAndInstantiate(input):
+    # dataset = input["dataset"]
+    
+    grader = input["grader"]
+    graderDict, graderFunc = translate(*grader)
+    grader = graderFunc(**graderDict)
+
+    base = input["base"]
+    baseDict, baseFunc = translate(*base)
+    base = baseFunc(**baseDict)
+
+    deferral = input["deferral"]
+    deferralDict, deferralFunc = translate(*deferral)
+    deferral = deferralFunc(**deferralDict)
+
+    resampling = input["resampling"]
+    resamplingDict, resamplingFunc = translate(*resampling)
+    resampling = resamplingFunc(**resamplingDict)
+
+    return grader, base, deferral, resampling

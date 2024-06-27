@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
-from translation import translate
+from translation import translateAndInstantiate
 
 
 class RunFrame(ctk.CTkFrame):
@@ -27,12 +27,8 @@ class RunFrame(ctk.CTkFrame):
             return
 
         # Format them correctly (convert dicts to reflect real arguments names)
-
-        r = input["grader"]
-        dic, func = translate(r[0], r[1])
-        print(dic)
-        model = func(**dic)
-        print(model)
+        grader, base, deferral, resampling = translateAndInstantiate(input)
+        print(grader, base, deferral, resampling)
 
 
         # Call the main function
