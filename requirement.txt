@@ -4,3 +4,4 @@ scikit-learn~=1.4.0
 imbalanced-learn~=0.12.3
 tk~=0.1.0
 customtkinter~=5.2.2
+CTkMessagebox~=2.5

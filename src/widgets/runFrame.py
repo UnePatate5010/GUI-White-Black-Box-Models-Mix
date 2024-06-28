@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from CTkMessagebox import CTkMessagebox
 from widgets.widgetExceptions import *
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
@@ -27,7 +28,10 @@ class RunFrame(ctk.CTkFrame):
             input = self.master.get()
             # print(input)
         except UnselectedItemError as e:
-            print(f"Missing an element. Please select a {e.missing}")
+            string = ""
+            for m in e.missing:
+                string += "\n- " + m
+            CTkMessagebox(title="Error", message="Some parameters have not been selected. Please select:" + string, icon="cancel")
             self.master.unfreeze()
             return
 
