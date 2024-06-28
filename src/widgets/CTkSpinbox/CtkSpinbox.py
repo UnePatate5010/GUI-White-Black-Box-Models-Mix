@@ -63,6 +63,9 @@ class Spinbox(ctk.CTkFrame):
                 value = int(self.entry.get()) - self.step_size
                 self.entry.delete(0, "end")
                 self.entry.insert(0, value)
+            else:
+                self.entry.delete(0, "end")
+                self.entry.insert(0, "None")
         except ValueError:
             return
 

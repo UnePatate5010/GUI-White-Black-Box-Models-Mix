@@ -3,6 +3,7 @@ from widgets.scrollFrame import ScrollFrame
 from widgets.dataset.datasetFrame import DatasetFrame
 from widgets.runFrame import RunFrame
 from widgets.outputFrames.graphFrame import GraphFrame
+from widgets.outputFrames.statsFrame import StatsFrame
 from constants import ScrollLists
 from widgets.widgetExceptions import *
 
@@ -58,8 +59,8 @@ class GUI(ctk.CTk):
         self.schema = GraphFrame(self)
         self.schema.grid(row=0, rowspan=3, column=3, columnspan=2, padx=10, pady=10, sticky="news")
 
-        # Stats frame PLACEHOLDER
-        self.stats = GraphFrame(self)
+        # Stats frame
+        self.stats = StatsFrame(self)
         self.stats.grid(row=3, column=3, columnspan=2, padx=10, pady=10, sticky="news")
 
 
