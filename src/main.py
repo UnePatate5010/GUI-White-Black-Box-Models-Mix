@@ -42,7 +42,7 @@ class GUI(ctk.CTk):
         self.deferral.grid(row=4, rowspan=3, column=3, padx=10, pady=10, sticky="ewns")
 
         # Resampling methods
-        self.resampling = ScrollFrame(self, "Resampling method", ScrollLists.RESAMPLING.value)
+        self.resampling = ScrollFrame(self, "Resampling method", ScrollLists.RESAMPLING.value, scroll_display_name="Select a resampling method")
         self.resampling.grid(row=4, rowspan=2, column=4, padx=10, pady=10, sticky="ewns")
 
         # Run button

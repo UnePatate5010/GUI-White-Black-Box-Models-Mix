@@ -20,7 +20,7 @@ class ScrollFrame(ctk.CTkFrame):
     :type models: [str]
     """
         
-    def __init__(self, master, name="Scrollable Frame", models=[]):
+    def __init__(self, master, name="Scrollable Frame", models=[], scroll_display_name = "Select a classifier"):
         """
         Constructor method
         """
@@ -39,7 +39,7 @@ class ScrollFrame(ctk.CTkFrame):
         self.scrollValues = models
 
         # Scrollable menu
-        self.optionmenu = ctk.CTkOptionMenu(self, width=250, values=["Select a classifier"], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
+        self.optionmenu = ctk.CTkOptionMenu(self, width=250, values=[scroll_display_name], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
         self.optionmenu.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
         self.ctkscroll = CTkScrollableDropdown(self.optionmenu, values=self.scrollValues, command=self.on_dropdown_select)
 
