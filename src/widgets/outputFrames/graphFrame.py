@@ -30,15 +30,19 @@ class GraphFrame(ctk.CTkFrame):
         # Plot decision boundary for the first set of labels using `model`
         Z1 = model.predict(np.c_[xx.ravel(), yy.ravel()])
         Z1 = Z1.reshape(xx.shape)
-        plot.contour(xx, yy, Z1, levels=[0.5], linewidths=2, colors='purple')
-        plot.legend("Decision boundary")
+        curve = plot.contour(xx, yy, Z1, levels=[0.5], linewidths=2, colors='black')
+        
 
         # Plot regions for the second set of labels using `grader`
         Z2 = grader.predict(np.c_[xx.ravel(), yy.ravel()])
         Z2 = Z2.reshape(xx.shape)
-        plot.contourf(xx, yy, Z2, alpha=0.3, cmap="winter")
+        area = plot.contourf(xx, yy, Z2, alpha=0.3, cmap="summer")
+        # fig.colorbar(area)
         
-        plot.scatter(X[:, 0], X[:, 1], c=y, edgecolor='k', marker='o', cmap="bwr")
+        y_u = np.unique(y)
+        for i in y_u:
+            plot.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
+        plot.legend()
 
         canvas = FigureCanvasTkAgg(fig, master = self)
         canvas.draw()
