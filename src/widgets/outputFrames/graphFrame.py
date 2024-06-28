@@ -26,7 +26,8 @@ class GraphFrame(ctk.CTkFrame):
         # Plot decision boundary for the first set of labels using `model`
         Z1 = model.predict(np.c_[xx.ravel(), yy.ravel()])
         Z1 = Z1.reshape(xx.shape)
-        plot.contour(xx, yy, Z1, levels=[0.5], linewidths=2, colors='green')
+        plot.contour(xx, yy, Z1, levels=[0.5], linewidths=2, colors='purple')
+        plot.legend("Decision boundary")
 
         # Plot regions for the second set of labels using `grader`
         Z2 = grader.predict(np.c_[xx.ravel(), yy.ravel()])

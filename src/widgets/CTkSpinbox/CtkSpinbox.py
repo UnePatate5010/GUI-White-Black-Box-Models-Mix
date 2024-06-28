@@ -11,11 +11,13 @@ class Spinbox(ctk.CTkFrame):
                  height: int = 32,
                  step_size: Union[int, float] = 1,
                  command: Callable = None,
+                 minimum_value = -1000,
                  **kwargs):
         super().__init__(*args, width=width, height=height, **kwargs)
 
         self.step_size = step_size
         self.command = command
+        self.minimum_value = minimum_value
 
         self.configure(fg_color=("gray78", "gray28"))  # set frame color
 
@@ -40,9 +42,13 @@ class Spinbox(ctk.CTkFrame):
         if self.command is not None:
             self.command()
         try:
-            value = int(self.entry.get()) + self.step_size
-            self.entry.delete(0, "end")
-            self.entry.insert(0, value)
+            if self.entry.get() == "None":
+                self.entry.delete(0, "end")
+                self.entry.insert(0, self.minimum_value)
+            else:
+                value = int(self.entry.get()) + self.step_size
+                self.entry.delete(0, "end")
+                self.entry.insert(0, value)
         except ValueError:
             return
 
@@ -50,9 +56,13 @@ class Spinbox(ctk.CTkFrame):
         if self.command is not None:
             self.command()
         try:
-            value = int(self.entry.get()) - self.step_size
-            self.entry.delete(0, "end")
-            self.entry.insert(0, value)
+            if self.entry.get() == "None":
+                self.entry.delete(0, "end")
+                self.entry.insert(0, self.minimum_value)
+            elif int(self.entry.get()) > self.minimum_value:
+                value = int(self.entry.get()) - self.step_size
+                self.entry.delete(0, "end")
+                self.entry.insert(0, value)
         except ValueError:
             return
 
@@ -69,8 +79,10 @@ class Spinbox(ctk.CTkFrame):
         self.entry.delete(0, "end")
         if value == None:
             self.entry.insert(0, "None")
-        else:
+        elif value >= self.minimum_value:
             self.entry.insert(0, str(int(value)))
+        else:
+            raise ValueError("Value too low")
 
 
     def configure(self, **kwargs):

@@ -36,7 +36,7 @@ class DecisionTreeFrame(ctk.CTkScrollableFrame, Model):
         # Maximum depth of trees
         self.labels.append(ctk.CTkLabel(self, text="Maximum depth"))
         self.labels[-1].grid(row=1, column=0, padx=20, pady=20, sticky="w")
-        self.entries.append(Spinbox(self))
+        self.entries.append(Spinbox(self, minimum_value=1))
         self.entries[-1].set(None) # Default value
         self.entries[-1].grid(row=1, column=1, padx=20, pady=20, sticky="we")
 
@@ -52,20 +52,20 @@ class DecisionTreeFrame(ctk.CTkScrollableFrame, Model):
         # Minimum number of elements for splits
         self.labels.append(ctk.CTkLabel(self, text="Minimum split samples"))
         self.labels[-1].grid(row=3, column=0, padx=20, pady=20, sticky="w")
-        self.entries.append(Spinbox(self))
+        self.entries.append(Spinbox(self, minimum_value=2))
         self.entries[-1].set(2) # Default value
         self.entries[-1].grid(row=3, column=1, padx=20, pady=20, sticky="we")
 
         # Minimum number of elements at leafs
         self.labels.append(ctk.CTkLabel(self, text="Minimum leaf samples"))
         self.labels[-1].grid(row=4, column=0, padx=20, pady=20, sticky="w")
-        self.entries.append(Spinbox(self))
+        self.entries.append(Spinbox(self, minimum_value=1))
         self.entries[-1].set(1) # Default value
         self.entries[-1].grid(row=4, column=1, padx=20, pady=20, sticky="we")
 
         # Maximum number of features considered when splitting
         self.labels.append(ctk.CTkLabel(self, text="Maximum number\n of features"))
         self.labels[-1].grid(row=5, column=0, padx=20, pady=20, sticky="w")
-        self.entries.append(Spinbox(self))
+        self.entries.append(Spinbox(self, minimum_value=1))
         self.entries[-1].set(None) # Default value
         self.entries[-1].grid(row=5, column=1, padx=20, pady=20, sticky="we")

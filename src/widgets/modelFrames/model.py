@@ -15,7 +15,14 @@ class Model():
         """
         dic = {}
         for i in range(len(self.entries)):
-            dic.update({self.labels[i].cget("text"): self.entries[i].get()})
+            # Deal with scrollable menu for true or false
+            if self.entries[i].get() == "True":
+                value = True
+            elif self.entries[i].get() == "False":
+                value = False
+            else:
+                value = self.entries[i].get()
+            dic.update({self.labels[i].cget("text"): value})
         return dic
 
     def freeze(self):

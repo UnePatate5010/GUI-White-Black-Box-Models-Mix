@@ -22,7 +22,7 @@ class Fuse():
                 preds.append(self.deferral.predict([elmt])[0])
             else:
                 preds.append(self.base.predict([elmt])[0])
-        print("nb of hard:", count, "out of ", len(data))
+        # print("nb of hard:", count, "out of ", len(data))
         return np.array(preds)
     
 
