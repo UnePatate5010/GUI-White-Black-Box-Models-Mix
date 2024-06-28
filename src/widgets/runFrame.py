@@ -35,10 +35,14 @@ class RunFrame(ctk.CTkFrame):
         (X, y), grader, base, deferral, resampling = translateAndInstantiate(input)
 
         # Call the main function
-        model, grader = run(X, y, grader, base, deferral, resampling)
+        model, grader, stats = run(X, y, grader, base, deferral, resampling)
 
         # Update output frames with results
         self.master.graph.draw(X, y, model, grader)
+        self.master.stats.set(accuracy = stats[0], 
+                              nb_hard = str(stats[1]) + " out of " + str(len(X)) + " elements", 
+                              accuracy_base = stats[2], 
+                              accuracy_deferral = stats[3])
 
         # Unfreeze all fields
         # self.master.unfreeze()

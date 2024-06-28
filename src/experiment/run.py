@@ -13,7 +13,10 @@ class Fuse():
         self.deferral = deferral
         self.grader = grader
 
-    def predict(self, data):
+    def predict(self, data, hard=False):
+        """
+        returns prediction and the number of 'hard' elements
+        """
         preds = []
         count = 0
         for elmt in data:
@@ -23,7 +26,34 @@ class Fuse():
             else:
                 preds.append(self.base.predict([elmt])[0])
         # print("nb of hard:", count, "out of ", len(data))
+        if hard:
+            return np.array(preds), count
         return np.array(preds)
+    
+    def predict_base(self, data):
+        return self.base.predict(data)
+    
+    def predict_deferral(self, data):
+        return self.deferral.predict(data)
+    
+    def accuracy(self, X, y):
+        preds = self.predict(X)
+        return np.sum(preds == y) / len(preds)
+    
+    def accuracy_base(self, X, y):
+        preds = self.base.predict(X)
+        return np.sum(preds == y) / len(preds)
+    
+    def accuracy_deferral(self, X, y):
+        preds = self.deferral.predict(X)
+        return np.sum(preds == y) / len(preds)
+    
+    def stats(self, X, y):
+        preds, hard = self.predict(X, True)
+        acc = calc_accuracy(preds, y)
+        acc_base = self.accuracy_base(X, y)
+        acc_deferral = self.accuracy_deferral(X, y)
+        return acc, hard, acc_base, acc_deferral
     
 
 def run(X, y, grader, base, deferral, resampling):
@@ -48,7 +78,10 @@ def run(X, y, grader, base, deferral, resampling):
     # Fuse models
     model = Fuse(base, deferral, grader)
 
-    return model, grader
+    # Get some stats
+    stats = model.stats(X, y)
+
+    return model, grader, stats
 
 
 # Different elements (returns indexes where elements of two arrays are different)
@@ -56,6 +89,5 @@ def different(arr1, arr2):
     return np.where(arr1 != arr2)[0]
 
 # Return the accuracy of a model over a dataset
-def accuracy(model, X, y):
-    preds = model.predict(X)
+def calc_accuracy(preds, y):
     return np.sum(preds == y) / len(preds)
