@@ -1,6 +1,7 @@
 import customtkinter as ctk
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
+from matplotlib.lines import Line2D
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 
@@ -32,17 +33,26 @@ class GraphFrame(ctk.CTkFrame):
         Z1 = Z1.reshape(xx.shape)
         curve = plot.contour(xx, yy, Z1, levels=[0.5], linewidths=2, colors='black')
         
-
         # Plot regions for the second set of labels using `grader`
         Z2 = grader.predict(np.c_[xx.ravel(), yy.ravel()])
         Z2 = Z2.reshape(xx.shape)
-        area = plot.contourf(xx, yy, Z2, alpha=0.3, cmap="summer")
+        area = plot.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu)
         # fig.colorbar(area)
         
+        # Plot points of each class
         y_u = np.unique(y)
         for i in y_u:
             plot.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
-        plot.legend()
+
+        # Legend (little trick to legend the decision boundary and hard/easy area)
+        contour_legend = Line2D([0], [0], color='black', lw=2, label='Decision Boundary')
+        handles, labels = plot.get_legend_handles_labels()
+        handles.append(contour_legend)
+        labels.append('Decision Boundary')
+        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu(0.9), markersize=10, marker='s'))
+        labels.append('Hard region')
+        plot.legend(handles=handles, labels=labels)
+
 
         canvas = FigureCanvasTkAgg(fig, master = self)
         canvas.draw()
