@@ -17,11 +17,12 @@ class GraphFrame(ctk.CTkFrame):
         self.name = ctk.CTkLabel(self, text="Graph", fg_color="#333333", corner_radius=10)
         self.name.grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
 
+        self.canvas = None
+
 
     def draw(self, X, y, model, grader):
-        global canvas
-        if canvas:
-            canvas.get_tk_widget().destroy()
+        if self.canvas:
+            self.canvas.get_tk_widget().destroy()
         fig = Figure(figsize = (5, 5), dpi = 100) 
         plot = fig.add_subplot(111)
 
@@ -54,9 +55,6 @@ class GraphFrame(ctk.CTkFrame):
         plot.legend(handles=handles, labels=labels)
 
 
-        canvas = FigureCanvasTkAgg(fig, master = self)
-        canvas.draw()
-        canvas.get_tk_widget().grid(sticky="ewsn")
-
-
-canvas = None
+        self.canvas = FigureCanvasTkAgg(fig, master = self)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().grid(sticky="ewsn")

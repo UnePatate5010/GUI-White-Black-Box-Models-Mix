@@ -4,6 +4,7 @@ from widgets.dataset.datasetFrame import DatasetFrame
 from widgets.runFrame import RunFrame
 from widgets.outputFrames.graphFrame import GraphFrame
 from widgets.outputFrames.statsFrame import StatsFrame
+from widgets.outputFrames.schemaFrame import SchemaFrame
 from constants import ScrollLists
 from widgets.widgetExceptions import *
 
@@ -55,8 +56,8 @@ class GUI(ctk.CTk):
         self.graph = GraphFrame(self)
         self.graph.grid(row=0, rowspan=4, column=0, columnspan=3, padx=10, pady=10, sticky="news")
 
-        # Schema frame PLACEHOLDER
-        self.schema = GraphFrame(self)
+        # Schema frame
+        self.schema = SchemaFrame(self)
         self.schema.grid(row=0, rowspan=3, column=3, columnspan=2, padx=10, pady=10, sticky="news")
 
         # Stats frame
@@ -111,4 +112,5 @@ class GUI(ctk.CTk):
         return dic
 
 window = GUI()
+window.protocol("WM_DELETE_WINDOW", window.quit)
 window.mainloop()

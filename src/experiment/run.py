@@ -81,7 +81,7 @@ def run(X, y, grader, base, deferral, resampling):
     # Get some stats
     stats = model.stats(X, y)
 
-    return model, grader, stats
+    return model, grader, base, deferral, stats
 
 
 # Different elements (returns indexes where elements of two arrays are different)
