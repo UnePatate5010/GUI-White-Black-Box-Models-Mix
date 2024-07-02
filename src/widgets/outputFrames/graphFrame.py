@@ -37,7 +37,7 @@ class GraphFrame(ctk.CTkFrame):
         # Plot regions for the second set of labels using `grader`
         Z2 = grader.predict(np.c_[xx.ravel(), yy.ravel()])
         Z2 = Z2.reshape(xx.shape)
-        area = plot.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu)
+        area = plot.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
         # fig.colorbar(area)
         
         # Plot points of each class
@@ -50,7 +50,7 @@ class GraphFrame(ctk.CTkFrame):
         handles, labels = plot.get_legend_handles_labels()
         handles.append(contour_legend)
         labels.append('Decision Boundary')
-        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu(0.9), markersize=10, marker='s'))
+        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s'))
         labels.append('Hard region')
         plot.legend(handles=handles, labels=labels)
 
