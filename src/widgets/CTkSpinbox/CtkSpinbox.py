@@ -12,12 +12,14 @@ class Spinbox(ctk.CTkFrame):
                  step_size: Union[int, float] = 1,
                  command: Callable = None,
                  minimum_value = -1000,
+                 none_enable = True,
                  **kwargs):
         super().__init__(*args, width=width, height=height, **kwargs)
 
         self.step_size = step_size
         self.command = command
         self.minimum_value = minimum_value
+        self.none_enable = none_enable
 
         self.configure(fg_color=("gray78", "gray28"))  # set frame color
 
@@ -63,7 +65,7 @@ class Spinbox(ctk.CTkFrame):
                 value = int(self.entry.get()) - self.step_size
                 self.entry.delete(0, "end")
                 self.entry.insert(0, value)
-            else:
+            elif self.none_enable:
                 self.entry.delete(0, "end")
                 self.entry.insert(0, "None")
         except ValueError:

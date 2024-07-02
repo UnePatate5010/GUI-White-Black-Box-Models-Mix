@@ -23,11 +23,11 @@ class GraphFrame(ctk.CTkFrame):
     def draw(self, X, y, model, grader):
         if self.canvas:
             self.canvas.get_tk_widget().destroy()
-        fig = Figure(figsize = (5, 5), dpi = 100) 
+        fig = Figure(figsize = (10, 5), dpi = 100) 
         plot = fig.add_subplot(111)
 
-        xx, yy = np.meshgrid(np.arange(X[:, 0].min() -0.01, X[:, 0].max() + 0.01, 0.01),
-                     np.arange(X[:, 1].min() - 0.01, X[:, 1].max() + 0.01, 0.01))
+        xx, yy = np.meshgrid(np.arange(X[:, 0].min() -0.05, X[:, 0].max() + 0.05, 0.01),
+                     np.arange(X[:, 1].min() - 0.05, X[:, 1].max() + 0.05, 0.01))
         
         # Plot decision boundary for the first set of labels using `model`
         Z1 = model.predict(np.c_[xx.ravel(), yy.ravel()])

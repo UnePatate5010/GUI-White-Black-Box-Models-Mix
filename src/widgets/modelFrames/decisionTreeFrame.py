@@ -3,7 +3,6 @@ This frame is displayed when a Decision Tree classifier is selected, providing f
 hyperparameters.
 """
 
-import tkinter as tk
 import customtkinter as ctk
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 from widgets.CTkSpinbox.CtkSpinbox import Spinbox

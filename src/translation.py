@@ -4,6 +4,7 @@ This file allows to translate human readable arguments to function arguments nam
 from datasets.loadDataset import loadDataset
 from models.decisionTree import decisionTree
 from models.randomForest import randomForest
+from models.svm import svm
 from resamplingMethods.smote import smote
 
 # Link a method name (human readable) to a tuple of a dicitonnary that translate human readable arguments
@@ -11,6 +12,7 @@ from resamplingMethods.smote import smote
 mappings = {
     # ========== Datasets ========== #
     "Corner": "./datasets/corner.csv",
+    "Moons": "./datasets/moons.csv",
 
     # ========== Models ========== #
     "Decision tree": ({
@@ -32,6 +34,14 @@ mappings = {
         "Bootstrap": "bootstrap",
         "Maximum number of\n samples per tree": "n_samples_boot"
     }, randomForest),
+
+    "Support Vector Machine": ({
+        "Regularization parameter": "C",
+        "Kernel": "kernel",
+        "Degree": "degree",
+        "Kernel coefficient": "gamma",
+        "Maximum iteration": "max_iter"
+    }, svm),
 
     # ========== Resampling ========== #
     "SMOTE": ({
