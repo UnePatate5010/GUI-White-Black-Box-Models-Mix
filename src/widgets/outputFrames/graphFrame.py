@@ -23,7 +23,7 @@ class GraphFrame(ctk.CTkFrame):
     def draw(self, X, y, model, grader):
         if self.canvas:
             self.canvas.get_tk_widget().destroy()
-        fig = Figure(figsize = (10, 5), dpi = 100) 
+        fig = Figure(figsize = (10, 5), dpi = 100, facecolor="grey") 
         plot = fig.add_subplot(111)
 
         xx, yy = np.meshgrid(np.arange(X[:, 0].min() -0.05, X[:, 0].max() + 0.05, 0.01),
