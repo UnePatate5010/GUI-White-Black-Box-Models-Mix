@@ -32,3 +32,8 @@ The main code is located in `src/` which is divided in different categories. For
 
 (Warning: the number of features needs to be known when selecting the maximum number of considered features in some models
 -> Better to use ratios (float) instead of numbers (int))
+
+
+## Gallery
+
+![](Example.png)
