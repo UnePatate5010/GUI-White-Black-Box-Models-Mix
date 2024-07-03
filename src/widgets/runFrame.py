@@ -1,10 +1,10 @@
+"""
+This frame correspond to the run button. It is charged to run an experiment with the selected parameter when the button is pressed. 
+It also provides computed data and models to output frames and draws/plots/shows results.
+"""
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from widgets.widgetExceptions import *
-import matplotlib.pyplot as plt
-from matplotlib.figure import Figure 
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import numpy as np
 from translation import translateAndInstantiate
 from experiment.run import run
 
@@ -54,7 +54,13 @@ class RunFrame(ctk.CTkFrame):
 
 
     def freeze(self):
+        """
+        Freeze all fields (disable)
+        """
         self.run_button.configure(state="disabled")
 
     def unfreeze(self):
+        """
+        Unfreeze all fields (enable)
+        """
         self.run_button.configure(state="normal")

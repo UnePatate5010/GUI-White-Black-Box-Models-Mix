@@ -1,11 +1,15 @@
+"""This file provides the DatasetFrame, a frame used to select a dataset.
+"""
 import customtkinter as ctk
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 from widgets.widgetExceptions import *
 from constants import ScrollLists
 
 class DatasetFrame(ctk.CTkFrame):
-    """
-    Frame used to select a dataset for the experiment.
+    """Frame used to select a dataset for the experiment.
+    
+    :param master: The master frame/window of this frame
+    :type master: class
     """
 
     def __init__(self, master):
@@ -32,16 +36,30 @@ class DatasetFrame(ctk.CTkFrame):
         self.ctkscroll = CTkScrollableDropdown(self.optionmenu, values=self.scrollValues, command=self.on_dropdown_select)
 
     def on_dropdown_select(self, frame):
+        """Method called when an item is selected in the scrollable menu. Changes the displayed dataset.
+        """
         self.optionmenu.set(frame)
         self.optionmenu.configure(fg_color="#1f6aa5", button_color="#144870", button_hover_color="#203a4f")
 
     def get(self):
+        """
+        Method called to retrieve input data from the frame itself.
+
+        :return: The selected element in the scrollable menu
+        :rtype: str
+        """
         if self.optionmenu.get() == "Select a dataset":
             raise UnselectedItemError("Missing item", self.name.cget("text"))
         return self.optionmenu.get()
     
     def freeze(self):
+        """
+        Freeze all fields (disable)
+        """
         self.optionmenu.configure(state='disabled')
 
     def unfreeze(self):
+        """
+        Unfreeze all fields (enable)
+        """
         self.optionmenu.configure(state='normal')

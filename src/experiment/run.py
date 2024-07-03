@@ -7,15 +7,31 @@ class Fuse():
     """
     Class representing the fusion of the different models:
     grader + base + deferral
+
+    :param base: The base classifier
+    :type base: class
+    :param deferral: The deferral classifier
+    :type deferral: class
+    :param grader: The grader
+    :type grader: class
     """
+
     def __init__(self, base, deferral, grader):
+        """Constructor method
+        """
         self.base = base
         self.deferral = deferral
         self.grader = grader
 
     def predict(self, data, hard=False):
-        """
-        returns prediction and the number of 'hard' elements
+        """Returns prediction and the number of 'hard' elements.
+
+        :param data: Data to predict classes
+        :type data: list
+        :param hard: A boolean that specifies if the amount of data labeled as 'hard' should be return or not
+        :type hard: boolean
+        :return: A list of prediction (and the number of data labeled as 'hard')
+        :rtype: numpy array (, int)
         """
         preds = []
         count = 0
@@ -31,24 +47,74 @@ class Fuse():
         return np.array(preds)
     
     def predict_base(self, data):
+        """Realize a prediction only using the base classifier
+
+        :param data: Data to predict
+        :type data: list
+        :return: A list of prediction
+        :rtype: list
+        """
         return self.base.predict(data)
     
     def predict_deferral(self, data):
+        """Realize a prediction only using the deferral classifier
+
+        :param data: Data to predict
+        :type data: list
+        :return: A list of prediction
+        :rtype: list
+        """
         return self.deferral.predict(data)
     
     def accuracy(self, X, y):
+        """Return the accuracy of the whole model over a provided dataset
+        
+        :param X: Dataset
+        :type X: list
+        :param y: labels
+        :type y: list
+        :return: The accuracy of the model
+        :rtype: float
+        """
         preds = self.predict(X)
         return np.sum(preds == y) / len(preds)
     
     def accuracy_base(self, X, y):
+        """Return the accuracy of the base classifier over a provided dataset
+        
+        :param X: Dataset
+        :type X: list
+        :param y: labels
+        :type y: list
+        :return: The accuracy of the model
+        :rtype: float
+        """
         preds = self.base.predict(X)
         return np.sum(preds == y) / len(preds)
     
     def accuracy_deferral(self, X, y):
+        """Return the accuracy of the deferral classifier over a provided dataset
+        
+        :param X: Dataset
+        :type X: list
+        :param y: labels
+        :type y: list
+        :return: The accuracy of the model
+        :rtype: float
+        """
         preds = self.deferral.predict(X)
         return np.sum(preds == y) / len(preds)
     
     def stats(self, X, y):
+        """Returns statistics
+        
+        :param X: Dataset
+        :type X: list
+        :param y: labels
+        :type y: list
+        :return: Accuracy of the model, amount of data labeled as 'hard', accuracy of the base classifier, accuracy of the deferral classifier
+        :rtype: float, int, float, float
+        """
         preds, hard = self.predict(X, True)
         acc = calc_accuracy(preds, y)
         acc_base = self.accuracy_base(X, y)
@@ -57,6 +123,25 @@ class Fuse():
     
 
 def run(X, y, grader, base, deferral, resampling):
+    """Run function that runs an experiment based on provided data.
+
+    :param X: Dataset
+    :type X: list
+    :param y: labels
+    :type y: list
+    :param base: The base classifier
+    :type base: class
+    :param deferral: The deferral classifier
+    :type deferral: class
+    :param grader: The grader
+    :type grader: class
+    :param resampling: Resampling method
+    :type resampling: class
+    :return: Trained model, trained grader, trained base classifier, trained deferral classifier, statistics
+    :rtype: class, class, class, class, tuple(float, int, float, float)
+    """
+
+
     # Training both grader and deferral
     base = base.fit(X, y)
     deferral = deferral.fit(X, y)

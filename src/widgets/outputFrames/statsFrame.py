@@ -1,7 +1,19 @@
+"""In this file, the StatsFrame class represents a frame in which different statistics of the 
+experiment can be displayed."""
+
 import customtkinter as ctk
 
 class StatsFrame(ctk.CTkFrame):
+    """Class providing a space and a method to display statistics
+
+    :param master: the master frame/window of this frame
+    :type master: class
+    """
+        
     def __init__(self, master):
+        """Constructor method
+        """
+
         super().__init__(master)
 
         self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
@@ -44,6 +56,9 @@ class StatsFrame(ctk.CTkFrame):
     def set(self, **kwargs):
         """
         Method used to set fields of the the frame
+
+        :param kwargs: Dictionnary of associating a statistic to a value
+        :kwargs; dict
         """
         for key, value in kwargs.items():
             self.values[key].configure(text=value)

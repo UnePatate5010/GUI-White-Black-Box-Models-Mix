@@ -4,6 +4,8 @@ Base Class for models frames. It brings several attributes and methods used in t
 
 class Model():
     def __init__(self):
+        """Constructor method
+        """
         self.labels = [] # List of labels (for entries)
         self.entries = [] # List of entry fields
 

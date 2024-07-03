@@ -1,3 +1,5 @@
+"""The GraphFrame class provided by this file is charged to display the graph that shows the dataset, decisoin boudaries...
+"""
 import customtkinter as ctk
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
@@ -6,7 +8,15 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 
 class GraphFrame(ctk.CTkFrame):
+    """Class providing a space and a method to plot a graph of the dataset and results.
+
+    :param master: the master frame/window of this frame
+    :type master: class
+    """
     def __init__(self, master):
+        """Constructor method
+        """
+
         super().__init__(master)
 
         self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
@@ -21,6 +31,18 @@ class GraphFrame(ctk.CTkFrame):
 
 
     def draw(self, X, y, model, grader):
+        """This method plots a graph to display result of the experiments. It is called by the RunFrame (run button).
+
+        :param X: The dataset
+        :type X: list
+        :param y: Labels of the dataset
+        :type y: list
+        :param model: Trained model (the fused model from the base/deferral classifer and the grader)
+        :type model: class
+        :param grader: Trained grader
+        :type grader: class
+        """
+
         if self.canvas:
             self.canvas.get_tk_widget().destroy()
         fig = Figure(figsize = (10, 5), dpi = 100, facecolor="grey") 

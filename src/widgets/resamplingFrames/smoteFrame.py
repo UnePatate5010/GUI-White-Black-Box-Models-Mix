@@ -7,8 +7,16 @@ from widgets.modelFrames.model import Model
 from widgets.CTkSpinbox.CtkSpinbox import Spinbox
 
 class SMOTEFrame(ctk.CTkScrollableFrame, Model):
+    """
+    Frame containing all entry fields for the SMOTE resampling method.
+
+    :param master: the master frame/window of this frame
+    :type master: class
+    """
 
     def __init__(self, master):
+        """Constructor method
+        """
         ctk.CTkScrollableFrame.__init__(self, master)
         Model.__init__(self)
 

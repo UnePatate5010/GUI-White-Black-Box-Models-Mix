@@ -14,6 +14,7 @@ class DecisionTreeFrame(ctk.CTkScrollableFrame, Model):
     Frame containing all entry fields for Decision Tree Clasifier.
 
     :param master: the master frame/window of this frame
+    :type master: class
     """
 
     def __init__(self, master):

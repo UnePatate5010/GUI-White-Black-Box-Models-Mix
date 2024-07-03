@@ -14,6 +14,7 @@ class RandomForestFrame(ctk.CTkScrollableFrame, Model):
     Frame containing all entry fields for Random Forest Clasifier.
 
     :param master: the master frame/window of this frame
+    :type master: class
     """
 
     def __init__(self, master):

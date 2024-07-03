@@ -10,6 +10,12 @@ from widgets.CTkSpinbox.CtkSpinbox import Spinbox
 from widgets.modelFrames.model import Model
 
 class SvmFrame(ctk.CTkScrollableFrame, Model):
+    """
+    Frame containing all entry fields for SVM.
+
+    :param master: the master frame/window of this frame
+    :type master: class
+    """
 
     def __init__(self, master):
         ctk.CTkScrollableFrame.__init__(self, master)

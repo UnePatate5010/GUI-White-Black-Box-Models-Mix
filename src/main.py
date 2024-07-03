@@ -10,7 +10,13 @@ from widgets.widgetExceptions import *
 
 
 class GUI(ctk.CTk):
+    """The GUI class is the main window of the application. It is charged to instantiate and display all
+    input and outpout frames.
+    """
+
     def __init__(self):
+        """Constructor method
+        """
         super().__init__()  
         self._state_before_windows_set_titlebar_color = "zoomed" # Maximiwe the window
         self.title("GUI")
@@ -66,6 +72,8 @@ class GUI(ctk.CTk):
 
 
     def freeze(self):
+        """'Freeze' all frames by disabling all buttons/entries/spinboxes/menus of the interface.
+        """
         self.dataset.freeze()
         self.grader.freeze()
         self.base.freeze()
@@ -74,6 +82,8 @@ class GUI(ctk.CTk):
         self.run.freeze()
 
     def unfreeze(self):
+        """'Unfreeze' all frames by enabling back every possible input.
+        """
         self.dataset.unfreeze()
         self.grader.unfreeze()
         self.base.unfreeze()
@@ -82,8 +92,11 @@ class GUI(ctk.CTk):
         self.run.unfreeze()
 
     def get(self):
-        """
-        :rtype: {str: (str:{})}
+        """Returns a dictionnary wich associate each input frame to a dictionnary of inputed values.
+    
+        :raises UnselectedItemError: raises an error in a field was not properly filled.
+        :return: A dictionnary of values inputed by the user in each frame.
+        :rtype: dict ({str: (str:{})})
         """
         error = []
         dic = {}
