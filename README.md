@@ -8,3 +8,20 @@ schemas and statistics.
 
 Warning: the number of features needs to be known when selecting the maximum number of considered features in some models
 -> Better to use ratios (float) instead of numbers (int)
+
+```
+.
+└── GUI/
+    ├── datasets/
+    ├── src/
+    │   ├── datasets/
+    │   ├── experiment/
+    │   ├── models/
+    │   ├── resamplingMethods/
+    │   ├── widgets/
+    │   └── ...
+    ├── tst/
+    ├── LICENSE
+    ├── READMED.md
+    └── requirements.txt
+```
