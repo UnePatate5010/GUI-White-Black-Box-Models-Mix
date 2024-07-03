@@ -7,7 +7,7 @@ schemas and statistics.
 
 
 ## Project Structure
-The main code is located in `src/` which is divided in different categories. For instance, all code file directly related to the graphic interface (frames...) are inside `src/widgets/`. Tests can be found in `tst/`. New datasets can be added in `datasets/` (more tweaks are needed though).
+The main code is located in `src/` which is divided in different categories. For instance, all code files directly related to the graphic interface (frames...) are inside `src/widgets/`. Moreover, tests can be found in `tst/`. Finnaly, new datasets can be added in `datasets/` (more tweaks are needed though).
 ```
 .
 └── GUI/
