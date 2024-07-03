@@ -6,9 +6,8 @@ It consists in a simple GUI where the user can select differents classifiers and
 schemas and statistics.
 
 
-Warning: the number of features needs to be known when selecting the maximum number of considered features in some models
--> Better to use ratios (float) instead of numbers (int)
-
+## Project Structure
+The main code is located in `src/` which is divided in different categories. For instance, all code file directly related to the graphic interface (frames...) are inside `src/widgets/`. Tests can be found in `tst/`. New datasets can be added in `datasets/` (more tweaks are needed though).
 ```
 .
 └── GUI/
@@ -25,3 +24,11 @@ Warning: the number of features needs to be known when selecting the maximum num
     ├── READMED.md
     └── requirements.txt
 ```
+
+## Getting Started
+
+
+
+
+(Warning: the number of features needs to be known when selecting the maximum number of considered features in some models
+-> Better to use ratios (float) instead of numbers (int))
