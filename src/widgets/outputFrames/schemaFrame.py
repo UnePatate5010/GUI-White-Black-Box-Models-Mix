@@ -46,5 +46,5 @@ class SchemaFrame(ctk.CTkFrame):
         # Display the plot in the canvas
         self.canvas = FigureCanvasTkAgg(fig1, master = self)
         self.canvas.draw()
-        self.canvas.get_tk_widget().grid(row=1, column=0, sticky="ewsn")
+        self.canvas.get_tk_widget().grid(row=1, column=0, padx=10, pady=10, sticky="ewsn")
 
