@@ -55,7 +55,7 @@ class DecisionTreeFrame(ctk.CTkScrollableFrame, Model):
         self.labels.append(ctk.CTkLabel(self, text="Minimum split samples"))
         self.labels[-1].grid(row=3, column=0, padx=20, pady=20, sticky="w")
         CTkToolTip(self.labels[-1], "The minimum number of samples required to split an internal node.")
-        self.entries.append(Spinbox(self, minimum_value=2))
+        self.entries.append(Spinbox(self, minimum_value=2, none_enable=False))
         self.entries[-1].set(2) # Default value
         self.entries[-1].grid(row=3, column=1, padx=20, pady=20, sticky="we")
 
@@ -63,7 +63,7 @@ class DecisionTreeFrame(ctk.CTkScrollableFrame, Model):
         self.labels.append(ctk.CTkLabel(self, text="Minimum leaf samples"))
         self.labels[-1].grid(row=4, column=0, padx=20, pady=20, sticky="w")
         CTkToolTip(self.labels[-1], "The minimum number of samples required to be at a leaf node.")
-        self.entries.append(Spinbox(self, minimum_value=1))
+        self.entries.append(Spinbox(self, minimum_value=1, none_enable=False))
         self.entries[-1].set(1) # Default value
         self.entries[-1].grid(row=4, column=1, padx=20, pady=20, sticky="we")
 
