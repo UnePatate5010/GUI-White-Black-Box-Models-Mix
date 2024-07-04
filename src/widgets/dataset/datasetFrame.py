@@ -24,7 +24,7 @@ class DatasetFrame(ctk.CTkFrame):
         self.grid_rowconfigure(2, weight=1)
 
         # Display frame name
-        self.name = ctk.CTkLabel(self, text="Dataset")
+        self.name = ctk.CTkLabel(self, text="Dataset", fg_color="#333333", corner_radius=10)
         self.name.grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
 
         # Values of the scrollable menu
