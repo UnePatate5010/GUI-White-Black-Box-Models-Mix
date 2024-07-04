@@ -104,6 +104,7 @@ class GraphFrame(ctk.CTkFrame):
         handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s'))
         labels.append('Hard region')
         plot.legend(handles=handles, labels=labels)
+        plot.title.set_text("Graph of the dataset with the 'hard' region and the decision boundary of the model")
 
 
 
@@ -137,6 +138,7 @@ class GraphFrame(ctk.CTkFrame):
         handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s'))
         labels.append('Hard region')
         plot2.legend(handles=handles, labels=labels)
+        plot2.title.set_text("Graph of the dataset with the decision boundaries of the base and deferral classifiers")
 
 
         self.canvas = FigureCanvasTkAgg(self.fig[0], master = self)
