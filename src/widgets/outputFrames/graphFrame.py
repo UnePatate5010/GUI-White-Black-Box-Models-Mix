@@ -128,8 +128,8 @@ class GraphFrame(ctk.CTkFrame):
         Z3 = Z3.reshape(xx.shape)
         curve2 = plot2.contour(xx, yy, Z3, levels=[0.5], linewidths=2, colors='gold')
         
-        contour_legend1 = Line2D([0], [0], color='green', lw=2, label='Decision Boundary Base')
-        contour_legend2 = Line2D([0], [0], color='cyan', lw=2, label='Decision Boundary Deferral')
+        contour_legend1 = Line2D([0], [0], color='forestgreen', lw=2, label='Decision Boundary Base')
+        contour_legend2 = Line2D([0], [0], color='gold', lw=2, label='Decision Boundary Deferral')
         handles, labels = plot2.get_legend_handles_labels()
         handles.append(contour_legend1)
         handles.append(contour_legend2)
