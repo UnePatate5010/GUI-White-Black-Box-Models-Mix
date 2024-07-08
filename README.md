@@ -27,11 +27,17 @@ The main code is located in `src/` which is divided in different categories. For
 
 ## Getting Started
 
+Currently, the app can be launched by running the `main.py` file using the following command:
+```console
+python3 ./src/main.py
+```
+ It will open a window with different scrollable menus. Models, datasets and resampling method can be selected using the said menus. Some parameters will then be displayed and can be tweaked to tune the experiment. When everything is set, press the `run` button to launch the experiment. Results will then be displayed in dedicated frames.
 
 
+## Issues & Warnings
 
-(Warning: the number of features needs to be known when selecting the maximum number of considered features in some models
--> Better to use ratios (float) instead of numbers (int))
+Warning: the number of features needs to be known when selecting the maximum number of considered features in some models
+&rarr; Better to use ratios (float) instead of numbers (int)
 
 
 ## Gallery
