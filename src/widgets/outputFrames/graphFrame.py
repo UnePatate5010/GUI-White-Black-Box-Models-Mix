@@ -86,15 +86,15 @@ class GraphFrame(ctk.CTkFrame):
         Z2 = Z2.reshape(xx.shape)
         area = plot.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
 
-        # Plot points of each class
-        y_u = np.unique(y)
-        for i in y_u:
-            plot.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
-
         # Plot decision boundary for the first set of labels using `model`
         Z1 = model.predict(np.c_[xx.ravel(), yy.ravel()])
         Z1 = Z1.reshape(xx.shape)
         curve = plot.contour(xx, yy, Z1, levels=[0.5], linewidths=2, colors='black')
+
+        # Plot points of each class
+        y_u = np.unique(y)
+        for i in y_u:
+            plot.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
 
         # Legend (little trick to legend the decision boundary and hard/easy area)
         contour_legend = Line2D([0], [0], color='black', lw=2, label='Decision Boundary')
@@ -114,9 +114,6 @@ class GraphFrame(ctk.CTkFrame):
 
         area = plot2.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
 
-        # Plot points of each class
-        for i in y_u:
-            plot2.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
 
         # Plot decision boundary for the first set of labels using `base`
         Z2 = model.predict_base(np.c_[xx.ravel(), yy.ravel()])
@@ -127,6 +124,10 @@ class GraphFrame(ctk.CTkFrame):
         Z3 = model.predict_deferral(np.c_[xx.ravel(), yy.ravel()])
         Z3 = Z3.reshape(xx.shape)
         curve2 = plot2.contour(xx, yy, Z3, levels=[0.5], linewidths=2, colors='gold')
+        
+        # Plot points of each class
+        for i in y_u:
+            plot2.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
         
         contour_legend1 = Line2D([0], [0], color='forestgreen', lw=2, label='Decision Boundary Base')
         contour_legend2 = Line2D([0], [0], color='gold', lw=2, label='Decision Boundary Deferral')
