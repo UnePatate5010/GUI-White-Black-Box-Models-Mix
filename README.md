@@ -36,8 +36,7 @@ python3 ./src/main.py
 
 ## Issues & Warnings
 
-Warning: the number of features needs to be known when selecting the maximum number of considered features in some models
-&rarr; Better to use ratios (float) instead of numbers (int)
+Entry fields accept every kind of string but only int should be put inside. A wrong input results in a error which is currently caught.
 
 
 ## Gallery
