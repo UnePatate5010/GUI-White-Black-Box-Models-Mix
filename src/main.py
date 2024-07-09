@@ -94,7 +94,7 @@ class GUI(ctk.CTk):
     def get(self):
         """Returns a dictionnary wich associate each input frame to a dictionnary of inputed values.
     
-        :raises UnselectedItemError: raises an error in a field was not properly filled.
+        :raises UnselectedItemError: raises an error if a field was not properly filled.
         :return: A dictionnary of values inputed by the user in each frame.
         :rtype: dict ({str: (str:{})})
         """
