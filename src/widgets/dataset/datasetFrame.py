@@ -3,7 +3,8 @@
 import customtkinter as ctk
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 from widgets.widgetExceptions import *
-from constants import ScrollLists
+import os
+
 
 class DatasetFrame(ctk.CTkFrame):
     """Frame used to select a dataset for the experiment.
@@ -28,7 +29,7 @@ class DatasetFrame(ctk.CTkFrame):
         self.name.grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
 
         # Values of the scrollable menu
-        self.scrollValues = ScrollLists.DATASETS.value
+        self.scrollValues = get_relative_paths("./datasets/")
 
         # Scrollable menu
         self.optionmenu = ctk.CTkOptionMenu(self, width=250, values=["Select a dataset"], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
@@ -63,3 +64,12 @@ class DatasetFrame(ctk.CTkFrame):
         Unfreeze all fields (enable)
         """
         self.optionmenu.configure(state='normal')
+
+
+def get_relative_paths(directory):
+    relative_paths = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            relative_path = os.path.relpath(os.path.join(root, file), directory)
+            relative_paths.append(directory + relative_path)
+    return relative_paths

@@ -14,8 +14,6 @@ MODEL_FRAMES = {"Decision tree": DecisionTreeFrame, "Random forest": RandomFores
 # Dictionnary associating resampling method names to corresponding frame class (customtkinter)
 RESAMPLING_FRAMES = {"SMOTE": SMOTEFrame}
 
-# Dictionnary associating datasets to corresponding frame class (customtkinter)
-DATASET_FRAMES = {"Corner", "Moons"}
 
 # Concatenation of MODEL_FRAMES and RESAMPLING_FRAMES
 ALL = dict(MODEL_FRAMES, **RESAMPLING_FRAMES)
@@ -25,4 +23,3 @@ class ScrollLists(Enum):
     CLASSIFIERS = ["Decision tree", "Random forest", "Support Vector Machine"] # List of available classifier
     GRADERS = ["Decision tree", "Random forest", "Support Vector Machine"] # List of available grader
     RESAMPLING = ["SMOTE"] # List of available resampling methods
-    DATASETS = ["Corner", "Moons"] # List of available datasets

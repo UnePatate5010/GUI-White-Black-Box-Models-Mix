@@ -10,10 +10,6 @@ from resamplingMethods.smote import smote
 # Link a method name (human readable) to a tuple of a dicitonnary that translate human readable arguments
 # to real arguments names and the corresponding function that instanciate such model
 mappings = {
-    # ========== Datasets ========== #
-    "Corner": "./datasets/corner.csv",
-    "Moons": "./datasets/moons.csv",
-
     # ========== Models ========== #
     "Decision tree": ({
         "Criterion": "criterion",
@@ -74,7 +70,7 @@ def translateAndInstantiate(input):
     :return: A tuple of the dataset and the labels, the grader, the base classifier, the deferral classifier, the resampling method
     :rtype: tuple(list, list), class, class, class, class
     """
-    X, y = loadDataset(mappings[input["dataset"]])
+    X, y = loadDataset(input["dataset"])
     
     grader = aux(input, "grader")
 
