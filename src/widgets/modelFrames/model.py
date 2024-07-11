@@ -15,7 +15,7 @@ class Model():
 
         :returns: dictionnary where keys are labels of input fields and values are correpsonding inputed values
         """
-        dic = {}
+        L = []
         for i in range(len(self.entries)):
             # Deal with scrollable menu for true or false
             if self.entries[i].get() == "True":
@@ -24,8 +24,8 @@ class Model():
                 value = False
             else:
                 value = self.entries[i].get()
-            dic.update({self.labels[i].cget("text"): value})
-        return dic
+            L.append(value)
+        return L
 
     def freeze(self):
         """

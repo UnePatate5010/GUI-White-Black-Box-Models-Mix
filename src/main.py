@@ -5,7 +5,7 @@ from widgets.runFrame import RunFrame
 from widgets.outputFrames.graphFrame import GraphFrame
 from widgets.outputFrames.statsFrame import StatsFrame
 from widgets.outputFrames.schemaFrame import SchemaFrame
-from constants import ScrollLists
+from constants import *
 from widgets.widgetExceptions import *
 
 
@@ -37,19 +37,19 @@ class GUI(ctk.CTk):
         self.dataset.grid(row=4, rowspan=3, column=0, padx=10, pady=10, sticky="ewns")
 
         # Grader frame
-        self.grader = ScrollFrame(self, "Grader", ScrollLists.GRADERS.value)
+        self.grader = ScrollFrame(self, "Grader", MODEL_FRAMES.keys())
         self.grader.grid(row=4, rowspan=3, column=1, padx=10, pady=10, sticky="ewns")
 
         # Base classifier frame
-        self.base = ScrollFrame(self, "Base Classifier", ScrollLists.CLASSIFIERS.value)
+        self.base = ScrollFrame(self, "Base Classifier", MODEL_FRAMES.keys())
         self.base.grid(row=4, rowspan=3, column=2, padx=10, pady=10, sticky="ewns")
 
         # Deferral classifier frame
-        self.deferral = ScrollFrame(self, "Deferral Classifier", ScrollLists.CLASSIFIERS.value)
+        self.deferral = ScrollFrame(self, "Deferral Classifier", MODEL_FRAMES.keys())
         self.deferral.grid(row=4, rowspan=3, column=3, padx=10, pady=10, sticky="ewns")
 
         # Resampling methods
-        self.resampling = ScrollFrame(self, "Resampling method", ScrollLists.RESAMPLING.value, scroll_display_name="Select a resampling method")
+        self.resampling = ScrollFrame(self, "Resampling method", RESAMPLING_FRAMES.keys(), scroll_display_name="Select a resampling method")
         self.resampling.grid(row=4, rowspan=2, column=4, padx=10, pady=10, sticky="ewns")
 
         # Run button
@@ -99,30 +99,30 @@ class GUI(ctk.CTk):
         :rtype: dict ({str: (str:{})})
         """
         error = []
-        dic = {}
+        L = []
         try:
-            dic["dataset"] = self.dataset.get()
+            L.append(self.dataset.get())
         except UnselectedItemError as e:
             error.append(e.missing)
         try:
-            dic["grader"] = self.grader.get()
+             L.append(self.grader.get())
         except UnselectedItemError as e:
             error.append(e.missing)
         try:
-            dic["base"] = self.base.get()
+             L.append(self.base.get())
         except UnselectedItemError as e:
             error.append(e.missing)
         try:
-            dic["deferral"] = self.deferral.get()
+             L.append(self.deferral.get())
         except UnselectedItemError as e:
             error.append(e.missing)
         try:
-            dic["resampling"] = self.resampling.get()
+             L.append(self.resampling.get())
         except UnselectedItemError as e:
             error.append(e.missing)
         if len(error):
             raise UnselectedItemError("Missing items", error)
-        return dic
+        return L
 
 window = GUI()
 window.protocol("WM_DELETE_WINDOW", window.quit)

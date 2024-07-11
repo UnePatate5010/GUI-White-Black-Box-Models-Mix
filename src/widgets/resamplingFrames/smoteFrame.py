@@ -5,6 +5,7 @@ import customtkinter as ctk
 from CTkToolTip import CTkToolTip
 from widgets.modelFrames.model import Model
 from widgets.CTkSpinbox.CtkSpinbox import Spinbox
+from resamplingMethods.smote import smote
 
 class SMOTEFrame(ctk.CTkScrollableFrame, Model):
     """
@@ -29,3 +30,6 @@ class SMOTEFrame(ctk.CTkScrollableFrame, Model):
         self.entries.append(Spinbox(self, minimum_value=1, none_enable=False))
         self.entries[-1].set(5) # Default value
         self.entries[-1].grid(row=0, column=1, padx=20, pady=20, sticky="we")
+
+    def get(self):
+        return smote(*Model.get(self))
