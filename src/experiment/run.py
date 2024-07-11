@@ -33,18 +33,26 @@ class Fuse():
         :return: A list of prediction (and the number of data labeled as 'hard')
         :rtype: numpy array (, int)
         """
-        preds = []
-        count = 0
-        for elmt in data:
-            if (self.grader.predict([elmt])[0] == 1):
-                count += 1
-                preds.append(self.deferral.predict([elmt])[0])
-            else:
-                preds.append(self.base.predict([elmt])[0])
-        # print("nb of hard:", count, "out of ", len(data))
+
+        grader_preds = self.grader.predict(data)
+        index_hard = np.where(grader_preds == 1)[0]
+        index_easy = ~np.isin(np.arange(len(grader_preds)), index_hard)
+
+        preds = np.empty((len(data)))
+        if len(index_hard) != 0:
+            hard_data = data[index_hard]
+            pred_hard = self.deferral.predict(hard_data)
+            preds[index_hard] = pred_hard
+        if len(index_easy) != 0:
+            easy_data = data[index_easy]
+            pred_easy = self.base.predict(easy_data)
+            preds[index_easy] = pred_easy
+
+        count = len(index_hard)
+
         if hard:
-            return np.array(preds), count
-        return np.array(preds)
+            return preds, count
+        return preds
     
     def predict_base(self, data):
         """Realize a prediction only using the base classifier
