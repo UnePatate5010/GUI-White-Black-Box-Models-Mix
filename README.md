@@ -27,7 +27,7 @@ The main code is located in `src/` which is divided in different categories. For
 
 ## Getting Started
 The first step is to install the required packages:
-```
+```console
 pip install -r ./requirements.txt
 ```
 
