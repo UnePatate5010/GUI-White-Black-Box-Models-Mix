@@ -8,6 +8,7 @@ from CTkToolTip import CTkToolTip
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 from widgets.CTkSpinbox.CtkSpinbox import Spinbox
 from widgets.modelFrames.model import Model
+from models.randomForest import randomForest
 
 class RandomForestFrame(ctk.CTkScrollableFrame, Model):
     """
@@ -88,3 +89,6 @@ class RandomForestFrame(ctk.CTkScrollableFrame, Model):
         self.entries.append(Spinbox(self))
         self.entries[-1].set(None) # Default value
         self.entries[-1].grid(row=7, column=1, padx=20, pady=20, sticky="we")
+
+    def get(self):
+        return randomForest(*Model.get(self))

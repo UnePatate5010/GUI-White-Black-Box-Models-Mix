@@ -91,7 +91,7 @@ class ScrollFrame(ctk.CTkFrame):
         """
         if self.current_frame == None:
             raise UnselectedItemError("An element was not selected", self.name.cget("text"))
-        return self.current_frame, self.frames[self.current_frame].get()
+        return self.frames[self.current_frame].get()
     
     def freeze(self):
         """

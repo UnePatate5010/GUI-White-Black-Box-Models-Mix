@@ -17,9 +17,3 @@ RESAMPLING_FRAMES = {"SMOTE": SMOTEFrame}
 
 # Concatenation of MODEL_FRAMES and RESAMPLING_FRAMES
 ALL = dict(MODEL_FRAMES, **RESAMPLING_FRAMES)
-
-# Enum that contains all lists for scrollable menus
-class ScrollLists(Enum):
-    CLASSIFIERS = ["Decision tree", "Random forest", "Support Vector Machine"] # List of available classifier
-    GRADERS = ["Decision tree", "Random forest", "Support Vector Machine"] # List of available grader
-    RESAMPLING = ["SMOTE"] # List of available resampling methods

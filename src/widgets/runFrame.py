@@ -5,8 +5,8 @@ It also provides computed data and models to output frames and draws/plots/shows
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from widgets.widgetExceptions import *
-from translation import translateAndInstantiate
 from experiment.run import run
+from datasets.loadDataset import loadDataset
 
 
 class RunFrame(ctk.CTkFrame):
@@ -36,8 +36,9 @@ class RunFrame(ctk.CTkFrame):
             return
 
         # Format them correctly (convert dicts to reflect real arguments names)
-        (X, y), grader, base, deferral, resampling = translateAndInstantiate(input)
-
+        dataset, grader, base, deferral, resampling = input
+        # Load dataset
+        X, y = loadDataset(dataset)
         # Call the main function
         model, grader, base, deferral, stats = run(X, y, grader, base, deferral, resampling)
 
