@@ -44,6 +44,13 @@ python3 ./src/main.py
 Entry fields accept every kind of string but only int should be put inside. A wrong input results in a error which is currently caught.
 
 
+## Expansions
+Different expansions are currently being considered. All of them might no be implemented though.
+- Documentation (user and developer)
+- Dimensionality reduction techniques to handle datasets with more than two features
+- Support for different datasets file types (currently only CSV files with a specific format are supported)
+- More QoL features ?
+
 ## Gallery
 
 ![](Example.png)
