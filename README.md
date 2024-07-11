@@ -26,6 +26,11 @@ The main code is located in `src/` which is divided in different categories. For
 ```
 
 ## Getting Started
+The first step is to install the required packages:
+```
+pip install -r ./requirements.txt
+```
+
 
 Currently, the app can be launched by running the `main.py` file using the following command:
 ```console
