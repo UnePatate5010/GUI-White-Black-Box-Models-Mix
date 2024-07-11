@@ -4,6 +4,7 @@ import customtkinter as ctk
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 from widgets.widgetExceptions import *
 import os
+from datasets.loadDataset import loadDataset
 
 
 class DatasetFrame(ctk.CTkFrame):
@@ -51,7 +52,7 @@ class DatasetFrame(ctk.CTkFrame):
         """
         if self.optionmenu.get() == "Select a dataset":
             raise UnselectedItemError("Missing item", self.name.cget("text"))
-        return self.optionmenu.get()
+        return loadDataset(self.optionmenu.get())
     
     def freeze(self):
         """
