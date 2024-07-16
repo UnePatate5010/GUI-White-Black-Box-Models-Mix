@@ -13,7 +13,7 @@ from widgets.resamplingFrames.adasynFrame import ADASYNFrame
 MODEL_FRAMES = {"Decision tree": DecisionTreeFrame, "Random forest": RandomForestFrame, "Support Vector Machine": SvmFrame}
 
 # Dictionnary associating resampling method names to corresponding frame class (customtkinter)
-RESAMPLING_FRAMES = {"SMOTE": SMOTEFrame, "ADASYN": ADASYNFrame}
+RESAMPLING_FRAMES = {"SMOTE": SMOTEFrame, "ADASYN": ADASYNFrame, "None": ()}
 
 
 # Concatenation of MODEL_FRAMES and RESAMPLING_FRAMES

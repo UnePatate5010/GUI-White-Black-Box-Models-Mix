@@ -70,16 +70,19 @@ class ScrollFrame(ctk.CTkFrame):
         :type frame: str
         """
         # Remove current displayed frame if existing
-        if self.current_frame != None:
+        if self.current_frame != None and self.current_frame != "None":
             self.frames[self.current_frame].grid_remove()
 
         # Instantiate the frame if not already existing (and stored in self.frames)
-        if frame not in self.frames:
-            self.frames[frame] =  ALL[frame](self)
+        if frame != "None":
+            if frame not in self.frames:
+                self.frames[frame] =  ALL[frame](self)
 
 
-        self.current_frame = frame
-        self.frames[frame].grid(row=2, column=0, padx=10, pady=10, sticky="ewns")
+            self.current_frame = frame
+            self.frames[frame].grid(row=2, column=0, padx=10, pady=10, sticky="ewns")
+        else:
+            self.current_frame = None
 
 
     def get(self):
@@ -90,7 +93,9 @@ class ScrollFrame(ctk.CTkFrame):
         :rtype: str, dict
         """
         if self.current_frame == None:
+            return None
             raise UnselectedItemError("An element was not selected", self.name.cget("text"))
+
         return self.frames[self.current_frame].get()
     
     def freeze(self):
