@@ -78,8 +78,8 @@ class GraphFrame(ctk.CTkFrame):
         self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="grey"))
         plot = self.fig[-1].add_subplot(111)
 
-        xx, yy = np.meshgrid(np.arange(X[:, 0].min() -0.1, X[:, 0].max() + 0.1, (X[:, 1].max() - X[:, 1].min()) / 200),
-                     np.arange(X[:, 1].min() - 0.1, X[:, 1].max() + 0.1, (X[:, 1].max() - X[:, 1].min()) / 200))
+        xx, yy = np.meshgrid(np.arange(X[:, 0].min() -0.1, X[:, 0].max() + 0.1, (X[:, 1].max() - X[:, 1].min()) / 300),
+                     np.arange(X[:, 1].min() - 0.1, X[:, 1].max() + 0.1, (X[:, 1].max() - X[:, 1].min()) / 300))
         
         # Plot regions for the second set of labels using `grader`
         Z2 = grader.predict(np.c_[xx.ravel(), yy.ravel()])
