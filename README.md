@@ -26,11 +26,13 @@ The main code is located in `src/` which is divided in different categories. For
 ```
 
 ## Getting Started
+I recommend you to download the latest release [here](https://github.com/UnePatate5010/GUI-White-Black-Box-Models-Mix/releases).
+
 The first step is to install the required packages:
 ```console
 pip install -r ./requirements.txt
 ```
-
+My advice is to create beforehand a virtual environment.
 
 Currently, the app can be launched by running the `main.py` file using the following command:
 ```console
