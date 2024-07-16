@@ -21,15 +21,15 @@ class SMOTEFrame(ctk.CTkScrollableFrame, Model):
         ctk.CTkScrollableFrame.__init__(self, master)
         Model.__init__(self)
 
-        self.grid_columnconfigure((1), weight=1)
+        self.grid_columnconfigure((0, 1), weight=1)
 
         # k neighbors entry: spinbox menu
-        self.labels.append(ctk.CTkLabel(self, text="K-neighbors"))
-        self.labels[-1].grid(row=0, column=0, padx=20, pady=20, sticky="w")
+        self.labels.append(ctk.CTkLabel(self, text="K-neighbors", wraplength=self.winfo_width()//2 - 20, justify="left"))
+        self.labels[-1].grid(row=0, column=0, padx=10, pady=10, sticky="w")
         CTkToolTip(self.labels[-1], "The number of nearest neighbors used to define the neighborhood of samples to use to generate the synthetic samples")
         self.entries.append(Spinbox(self, minimum_value=1, none_enable=False))
         self.entries[-1].set(5) # Default value
-        self.entries[-1].grid(row=0, column=1, padx=20, pady=20, sticky="we")
+        self.entries[-1].grid(row=0, column=1, padx=10, pady=10, sticky="we")
 
     def get(self):
         return smote(*Model.get(self))
