@@ -81,6 +81,9 @@ class GraphFrame(ctk.CTkFrame):
         xx, yy = np.meshgrid(np.arange(X[:, 0].min() -0.1, X[:, 0].max() + 0.1, (X[:, 1].max() - X[:, 1].min()) / 300),
                      np.arange(X[:, 1].min() - 0.1, X[:, 1].max() + 0.1, (X[:, 1].max() - X[:, 1].min()) / 300))
         
+        # List of unique labels
+        y_u = np.unique(y)
+
         # Plot regions for the second set of labels using `grader`
         Z2 = grader.predict(np.c_[xx.ravel(), yy.ravel()])
         Z2 = Z2.reshape(xx.shape)
@@ -89,10 +92,9 @@ class GraphFrame(ctk.CTkFrame):
         # Plot decision boundary for the first set of labels using `model`
         Z1 = model.predict(np.c_[xx.ravel(), yy.ravel()])
         Z1 = Z1.reshape(xx.shape)
-        curve = plot.contour(xx, yy, Z1, levels=[0.5], linewidths=2, colors='black')
+        curve = plot.contour(xx, yy, Z1, levels=len(y_u), linewidths=2, colors='black')
 
         # Plot points of each class
-        y_u = np.unique(y)
         for i in y_u:
             plot.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
 
@@ -118,12 +120,12 @@ class GraphFrame(ctk.CTkFrame):
         # Plot decision boundary for the first set of labels using `base`
         Z2 = model.predict_base(np.c_[xx.ravel(), yy.ravel()])
         Z2 = Z2.reshape(xx.shape)
-        curve1 = plot2.contour(xx, yy, Z2, levels=[0.5], linewidths=4, colors='forestgreen')
+        curve1 = plot2.contour(xx, yy, Z2, levels=len(y_u), linewidths=4, colors='forestgreen')
 
         # Plot decision boundary for the first set of labels using `deferral`
         Z3 = model.predict_deferral(np.c_[xx.ravel(), yy.ravel()])
         Z3 = Z3.reshape(xx.shape)
-        curve2 = plot2.contour(xx, yy, Z3, levels=[0.5], linewidths=2, colors='gold')
+        curve2 = plot2.contour(xx, yy, Z3, levels=len(y_u), linewidths=2, colors='gold')
         
         # Plot points of each class
         for i in y_u:
