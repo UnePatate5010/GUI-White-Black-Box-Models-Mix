@@ -8,6 +8,7 @@ from widgets.outputFrames.schemaFrame import SchemaFrame
 from constants import *
 from widgets.widgetExceptions import *
 
+ctk.deactivate_automatic_dpi_awareness()
 
 class GUI(ctk.CTk):
     """The GUI class is the main window of the application. It is charged to instantiate and display all
