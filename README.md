@@ -43,7 +43,7 @@ python3 ./src/main.py
 
 ## Issues & Warnings
 
-Entry fields accept every kind of string but only int should be put inside. A wrong input results in a error which is currently caught.
+Entry fields accept every kind of string but only int should be put inside. A wrong input results in an error printed in the console or undetermined behaviour.
 
 
 ## Expansions
