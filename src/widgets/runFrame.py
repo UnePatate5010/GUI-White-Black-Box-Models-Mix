@@ -35,16 +35,20 @@ class RunFrame(ctk.CTkFrame):
             return
 
         # Format them correctly (convert dicts to reflect real arguments names)
-        (X, y), grader, base, deferral, resampling = input
+        ((X, y), percentage), grader, base, deferral, resampling = input
         # Call the main function
-        model, grader, base, deferral, stats = run(X, y, grader, base, deferral, resampling)
+        model, grader, base, deferral, stats, (X, y), (X_val, y_val) = run(X, y, grader, base, deferral, resampling, percentage)
 
         # Update output frames with results
-        self.master.graph.draw(X, y, model, grader)
-        self.master.stats.set(accuracy = stats[0], 
-                              nb_hard = str(stats[1]) + " out of " + str(len(X)) + " elements (" + str(stats[1]/len(X)) + "%)", 
-                              accuracy_base = stats[2], 
-                              accuracy_deferral = stats[3])
+        self.master.graph.draw(X, y, X_val, y_val, model, grader)
+        self.master.stats.set(accuracy_val = stats[0], 
+                              nb_hard_val = str(stats[1]) + " out of " + str(len(X_val)) + " elements (" + str(stats[1]/len(X_val)) + "%)", 
+                              accuracy_base_val = stats[2], 
+                              accuracy_deferral_val = stats[3],
+                              accuracy_train = stats[4], 
+                              nb_hard_train = str(stats[5]) + " out of " + str(len(X)) + " elements (" + str(stats[5]/len(X)) + "%)", 
+                              accuracy_base_train = stats[6], 
+                              accuracy_deferral_train = stats[7])
         self.master.schema.draw(base)
 
         # Unfreeze all fields

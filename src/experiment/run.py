@@ -130,7 +130,7 @@ class Fuse():
         return acc, hard, acc_base, acc_deferral
     
 
-def run(X, y, grader, base, deferral, resampling):
+def run(X, y, grader, base, deferral, resampling, percentage):
     """Run function that runs an experiment based on provided data.
 
     :param X: Dataset
@@ -145,10 +145,26 @@ def run(X, y, grader, base, deferral, resampling):
     :type grader: class
     :param resampling: Resampling method
     :type resampling: class
-    :return: Trained model, trained grader, trained base classifier, trained deferral classifier, statistics
-    :rtype: class, class, class, class, tuple(float, int, float, float)
+    :param percentage: percentage of dataset used as validation set
+    :type percentage: float
+    :return: Trained model, trained grader, trained base classifier, trained deferral classifier, statistics, training_set, validation_set
+    :rtype: class, class, class, class, tuple(float, int, float, float), tuple(list, list), tuple(list, list)
     """
 
+    # Training and validation set
+    training_size = round(percentage * len(X))
+    indexes = np.arange(len(X))
+    np.random.shuffle(indexes)
+
+    # Shuffle
+    X = X[indexes]
+    y = y[indexes]
+
+    X_val = X[:training_size]
+    y_val = y[:training_size]
+
+    X = X[training_size:]
+    y = y[training_size:]
 
     # Training both grader and deferral
     base = base.fit(X, y)
@@ -172,9 +188,9 @@ def run(X, y, grader, base, deferral, resampling):
     model = Fuse(base, deferral, grader)
 
     # Get some stats
-    stats = model.stats(X, y)
+    stats = model.stats(X_val, y_val) + model.stats(X, y)
 
-    return model, grader, base, deferral, stats
+    return model, grader, base, deferral, stats, (X, y), (X_val, y_val)
 
 
 # Different elements (returns indexes where elements of two arrays are different)

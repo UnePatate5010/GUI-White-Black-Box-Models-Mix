@@ -3,7 +3,7 @@ experiment can be displayed."""
 
 import customtkinter as ctk
 
-class StatsFrame(ctk.CTkFrame):
+class StatsFrame(ctk.CTkScrollableFrame):
     """Class providing a space and a method to display statistics
 
     :param master: the master frame/window of this frame
@@ -16,7 +16,7 @@ class StatsFrame(ctk.CTkFrame):
 
         super().__init__(master)
 
-        self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
+        # self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
         self.grid_columnconfigure((0, 1), weight=1)
         self.grid_rowconfigure((0, 1, 2, 3, 4), weight=1)
 
@@ -29,29 +29,55 @@ class StatsFrame(ctk.CTkFrame):
         self.labels = {}
         self.values = {}
 
+        # Validation set
         # Accuracy
-        self.labels["accuracy"] = ctk.CTkLabel(self, text="Accuracy of the whole model")
-        self.labels["accuracy"].grid(row=1, column=0, padx=10, pady=10, sticky="ewns")
-        self.values["accuracy"] = ctk.CTkLabel(self, text="")
-        self.values["accuracy"].grid(row=1, column=1, padx=10, pady=10, sticky="ewns")
+        self.labels["accuracy_val"] = ctk.CTkLabel(self, text="Accuracy of the whole model (validation set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_val"].grid(row=1, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_val"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_val"].grid(row=1, column=1, padx=10, pady=10, sticky="ewns")
 
         # Number of elements declared as hard
-        self.labels["nb_hard"] = ctk.CTkLabel(self, text="Number of hard elements")
-        self.labels["nb_hard"].grid(row=2, column=0, padx=10, pady=10, sticky="ewns")
-        self.values["nb_hard"] = ctk.CTkLabel(self, text="")
-        self.values["nb_hard"].grid(row=2, column=1, padx=10, pady=10, sticky="ewns")
+        self.labels["nb_hard_val"] = ctk.CTkLabel(self, text="Number of hard elements (validation set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["nb_hard_val"].grid(row=2, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["nb_hard_val"] = ctk.CTkLabel(self, text="")
+        self.values["nb_hard_val"].grid(row=2, column=1, padx=10, pady=10, sticky="ewns")
 
         # Accuracy of the base classifier alone
-        self.labels["accuracy_base"] = ctk.CTkLabel(self, text="Accuracy of the base classifier")
-        self.labels["accuracy_base"].grid(row=3, column=0, padx=10, pady=10, sticky="ewns")
-        self.values["accuracy_base"] = ctk.CTkLabel(self, text="")
-        self.values["accuracy_base"].grid(row=3, column=1, padx=10, pady=10, sticky="ewns")
+        self.labels["accuracy_base_val"] = ctk.CTkLabel(self, text="Accuracy of the base classifier (validation set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_base_val"].grid(row=3, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_base_val"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_base_val"].grid(row=3, column=1, padx=10, pady=10, sticky="ewns")
 
         # Accuracy of the deferral classifier alone
-        self.labels["accuracy_deferral"] = ctk.CTkLabel(self, text="Accuracy of the deferral classifier")
-        self.labels["accuracy_deferral"].grid(row=4, column=0, padx=10, pady=10, sticky="ewns")
-        self.values["accuracy_deferral"] = ctk.CTkLabel(self, text="")
-        self.values["accuracy_deferral"].grid(row=4, column=1, padx=10, pady=10, sticky="ewns")
+        self.labels["accuracy_deferral_val"] = ctk.CTkLabel(self, text="Accuracy of the deferral classifier (validation set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_deferral_val"].grid(row=4, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_deferral_val"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_deferral_val"].grid(row=4, column=1, padx=10, pady=10, sticky="ewns")
+        
+        # Training set
+        # Accuracy
+        self.labels["accuracy_train"] = ctk.CTkLabel(self, text="Accuracy of the whole model (training set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_train"].grid(row=5, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_train"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_train"].grid(row=5, column=1, padx=10, pady=10, sticky="ewns")
+
+        # Number of elements declared as hard
+        self.labels["nb_hard_train"] = ctk.CTkLabel(self, text="Number of hard elements (training set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["nb_hard_train"].grid(row=6, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["nb_hard_train"] = ctk.CTkLabel(self, text="")
+        self.values["nb_hard_train"].grid(row=6, column=1, padx=10, pady=10, sticky="ewns")
+
+        # Accuracy of the base classifier alone
+        self.labels["accuracy_base_train"] = ctk.CTkLabel(self, text="Accuracy of the base classifier (training set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_base_train"].grid(row=7, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_base_train"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_base_train"].grid(row=7, column=1, padx=10, pady=10, sticky="ewns")
+
+        # Accuracy of the deferral classifier alone
+        self.labels["accuracy_deferral_train"] = ctk.CTkLabel(self, text="Accuracy of the deferral classifier (training set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_deferral_train"].grid(row=8, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_deferral_train"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_deferral_train"].grid(row=8, column=1, padx=10, pady=10, sticky="ewns")
 
     def set(self, **kwargs):
         """
