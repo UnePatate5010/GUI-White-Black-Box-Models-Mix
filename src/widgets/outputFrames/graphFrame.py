@@ -84,10 +84,15 @@ class GraphFrame(ctk.CTkFrame):
         self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="grey"))
         plot = self.fig[-1].add_subplot(111)
 
-        step = (X[:, 1].max() - X[:, 1].min()) / 500
+        true_min_x = min(X[:, 0].min(), X_val[:, 0].min())
+        true_max_x = max(X[:, 0].max(), X_val[:, 0].max())
+        true_min_y = min(X[:, 1].min(), X_val[:, 1].min())
+        true_max_y = max(X[:, 1].max(), X_val[:, 1].max())
+        step_x = (true_max_x - true_min_x) / 500
+        step_y = (true_max_y - true_min_y) / 500
 
-        xx, yy = np.meshgrid(np.arange(X[:, 0].min() - 5 * step, X[:, 0].max() + 5 * step, step),
-                     np.arange(X[:, 1].min() - 5 * step, X[:, 1].max() + 5 * step, step))
+        xx, yy = np.meshgrid(np.arange(true_min_x - step_x, true_max_x + step_x, step_x),
+                     np.arange(true_min_y - step_y, true_max_y + step_y, step_y))
         
         # List of unique labels
         y_u = np.unique(y)
@@ -128,7 +133,7 @@ class GraphFrame(ctk.CTkFrame):
         # Plot decision boundary for the first set of labels using `base`
         Z3 = model.predict_base(np.c_[xx.ravel(), yy.ravel()])
         Z3 = Z3.reshape(xx.shape)
-        curve1 = plot2.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='forestgreen')
+        curve1 = plot2.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='olivedrab')
 
         # Plot decision boundary for the first set of labels using `deferral`
         Z4 = model.predict_deferral(np.c_[xx.ravel(), yy.ravel()])
@@ -139,7 +144,7 @@ class GraphFrame(ctk.CTkFrame):
         for i in y_u:
             plot2.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
         
-        contour_legend1 = Line2D([0], [0], color='forestgreen', lw=4, label='Decision Boundary Base')
+        contour_legend1 = Line2D([0], [0], color='olivedrab', lw=4, label='Decision Boundary Base')
         contour_legend2 = Line2D([0], [0], color='gold', lw=1, label='Decision Boundary Deferral')
         handles, labels = plot2.get_legend_handles_labels()
         handles.append(contour_legend1)
@@ -177,13 +182,13 @@ class GraphFrame(ctk.CTkFrame):
         plot4 = self.fig[-1].add_subplot(111)
 
         area = plot4.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
-        curve1 = plot4.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='forestgreen')
+        curve1 = plot4.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='olivedrab')
         curve2 = plot4.contour(xx, yy, Z4, levels=len(y_u), linewidths=1, colors='gold')
 
         for i in y_u:
             plot4.scatter(X_val[:, 0][y_val == i], X_val[:, 1][y_val == i], edgecolor='k', marker='o', label=str(i))
         
-        contour_legend1 = Line2D([0], [0], color='forestgreen', lw=4, label='Decision Boundary Base')
+        contour_legend1 = Line2D([0], [0], color='olivedrab', lw=4, label='Decision Boundary Base')
         contour_legend2 = Line2D([0], [0], color='gold', lw=1, label='Decision Boundary Deferral')
         handles, labels = plot2.get_legend_handles_labels()
         handles.append(contour_legend1)
