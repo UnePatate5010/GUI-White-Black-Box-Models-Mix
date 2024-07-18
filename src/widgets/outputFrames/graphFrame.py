@@ -74,6 +74,8 @@ class GraphFrame(ctk.CTkFrame):
         :param grader: Trained grader
         :type grader: class
         """
+        plt.close("all")
+
         self.fig = [] # Attribute to store different figures
         self.fig_index = 0
 
