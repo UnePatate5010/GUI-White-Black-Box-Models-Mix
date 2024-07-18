@@ -81,7 +81,7 @@ class GraphFrame(ctk.CTkFrame):
 
         if self.canvas:
             self.canvas.get_tk_widget().destroy()
-        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="grey"))
+        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
         plot = self.fig[-1].add_subplot(111)
 
         true_min_x = min(X[:, 0].min(), X_val[:, 0].min())
@@ -124,7 +124,7 @@ class GraphFrame(ctk.CTkFrame):
 
 
         # Second plot with decision boundaries of base and deferral classifiers
-        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="grey"))
+        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
         plot2 = self.fig[-1].add_subplot(111)
 
         area = plot2.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
@@ -133,19 +133,19 @@ class GraphFrame(ctk.CTkFrame):
         # Plot decision boundary for the first set of labels using `base`
         Z3 = model.predict_base(np.c_[xx.ravel(), yy.ravel()])
         Z3 = Z3.reshape(xx.shape)
-        curve1 = plot2.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='olivedrab')
+        curve1 = plot2.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='green')
 
         # Plot decision boundary for the first set of labels using `deferral`
         Z4 = model.predict_deferral(np.c_[xx.ravel(), yy.ravel()])
         Z4 = Z4.reshape(xx.shape)
-        curve2 = plot2.contour(xx, yy, Z4, levels=len(y_u), linewidths=1, colors='gold')
+        curve2 = plot2.contour(xx, yy, Z4, levels=len(y_u), linewidths=2, colors='violet')
         
         # Plot points of each class
         for i in y_u:
             plot2.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
         
-        contour_legend1 = Line2D([0], [0], color='olivedrab', lw=4, label='Decision Boundary Base')
-        contour_legend2 = Line2D([0], [0], color='gold', lw=1, label='Decision Boundary Deferral')
+        contour_legend1 = Line2D([0], [0], color='green', lw=4, label='Decision Boundary Base')
+        contour_legend2 = Line2D([0], [0], color='violet', lw=2, label='Decision Boundary Deferral')
         handles, labels = plot2.get_legend_handles_labels()
         handles.append(contour_legend1)
         handles.append(contour_legend2)
@@ -158,7 +158,7 @@ class GraphFrame(ctk.CTkFrame):
 
 
         # Idem as first figure but with validation set
-        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="grey"))
+        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
         plot3 = self.fig[-1].add_subplot(111)
 
         area = plot3.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
@@ -178,18 +178,18 @@ class GraphFrame(ctk.CTkFrame):
         plot3.title.set_text("Graph of the dataset with the 'hard' region and the decision boundary of the model (Validation set)")
 
         # Idem as second figure but with validation set
-        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="grey"))
+        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
         plot4 = self.fig[-1].add_subplot(111)
 
         area = plot4.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
-        curve1 = plot4.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='olivedrab')
-        curve2 = plot4.contour(xx, yy, Z4, levels=len(y_u), linewidths=1, colors='gold')
+        curve1 = plot4.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='green')
+        curve2 = plot4.contour(xx, yy, Z4, levels=len(y_u), linewidths=2, colors='violet')
 
         for i in y_u:
             plot4.scatter(X_val[:, 0][y_val == i], X_val[:, 1][y_val == i], edgecolor='k', marker='o', label=str(i))
         
-        contour_legend1 = Line2D([0], [0], color='olivedrab', lw=4, label='Decision Boundary Base')
-        contour_legend2 = Line2D([0], [0], color='gold', lw=1, label='Decision Boundary Deferral')
+        contour_legend1 = Line2D([0], [0], color='green', lw=4, label='Decision Boundary Base')
+        contour_legend2 = Line2D([0], [0], color='violet', lw=1, label='Decision Boundary Deferral')
         handles, labels = plot2.get_legend_handles_labels()
         handles.append(contour_legend1)
         handles.append(contour_legend2)

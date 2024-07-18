@@ -42,11 +42,11 @@ class RunFrame(ctk.CTkFrame):
         # Update output frames with results
         self.master.graph.draw(X, y, X_val, y_val, model, grader)
         self.master.stats.set(accuracy_val = round(stats[0], 3), 
-                              nb_hard_val = str(stats[1]) + " out of " + str(len(X_val)) + " elements (" + str(round(stats[1]/len(X_val), 3)) + "%)", 
+                              nb_hard_val = str(stats[1]) + " out of " + str(len(X_val)) + " elements (" + str(round(stats[1]/len(X_val) * 100, 3)) + "%)", 
                               accuracy_base_val = round(stats[2], 3), 
                               accuracy_deferral_val = round(stats[3], 3),
                               accuracy_train = round(stats[4], 3), 
-                              nb_hard_train = str(round(stats[5], 3)) + " out of " + str(len(X)) + " elements (" + str(round(stats[5]/len(X), 3)) + "%)", 
+                              nb_hard_train = str(round(stats[5], 3)) + " out of " + str(len(X)) + " elements (" + str(round(stats[5]/len(X) * 100, 3)) + "%)", 
                               accuracy_base_train = round(stats[6], 3), 
                               accuracy_deferral_train = round(stats[7], 3))
         self.master.schema.draw(base)
