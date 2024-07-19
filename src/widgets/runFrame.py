@@ -21,6 +21,8 @@ class RunFrame(ctk.CTkFrame):
     def button_callback(self):
         # Freeze all fields
         # self.master.freeze()
+       
+        self.master.graph.clean()
 
         # Get methods and hyperparameters
         try:
@@ -40,7 +42,8 @@ class RunFrame(ctk.CTkFrame):
         model, grader, base, deferral, stats, (X, y), (X_val, y_val) = run(X, y, grader, base, deferral, resampling, percentage)
 
         # Update output frames with results
-        self.master.graph.draw(X, y, X_val, y_val, model, grader)
+        if len(X[0]) <= 2:
+            self.master.graph.draw(X, y, X_val, y_val, model, grader)
         self.master.stats.set(accuracy_val = round(stats[0], 3), 
                               nb_hard_val = str(stats[1]) + " out of " + str(len(X_val)) + " elements (" + str(round(stats[1]/len(X_val) * 100, 3)) + "%)", 
                               accuracy_base_val = round(stats[2], 3), 
