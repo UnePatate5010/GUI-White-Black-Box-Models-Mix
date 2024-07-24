@@ -1,8 +1,8 @@
 """
-Base Class for models frames. It brings several attributes and methods used in the different frames -> refactoring
+Base Class for scrolling frames. It brings several attributes and methods used in the different frames -> refactoring
 """
 
-class Model():
+class EmbeddedScrollFrame():
     def __init__(self):
         """Constructor method
         """

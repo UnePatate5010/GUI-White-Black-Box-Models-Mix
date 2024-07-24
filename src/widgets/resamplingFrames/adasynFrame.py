@@ -3,11 +3,11 @@ This file provide a frame to input hyperparameters of the ADASYN algorithm
 """
 import customtkinter as ctk
 from CTkToolTip import CTkToolTip
-from widgets.modelFrames.model import Model
+from widgets.embeddedScrollFrame import EmbeddedScrollFrame
 from widgets.CTkSpinbox.CtkSpinbox import Spinbox
 from resamplingMethods.adasyn import adasyn
 
-class ADASYNFrame(ctk.CTkScrollableFrame, Model):
+class ADASYNFrame(ctk.CTkScrollableFrame, EmbeddedScrollFrame):
     """
     Frame containing all entry fields for the ADASYN resampling method.
 
@@ -19,12 +19,12 @@ class ADASYNFrame(ctk.CTkScrollableFrame, Model):
         """Constructor method
         """
         ctk.CTkScrollableFrame.__init__(self, master)
-        Model.__init__(self)
+        EmbeddedScrollFrame.__init__(self)
 
         self.grid_columnconfigure((0, 1), weight=1)
 
         # k neighbors entry: spinbox menu
-        self.labels.append(ctk.CTkLabel(self, text="K-neighbors", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10))
+        self.labels.append(ctk.CTkLabel(self, text="K-neighbors", wraplength=master.winfo_width()//2 - 20, justify="left", padx=10))
         self.labels[-1].grid(row=0, column=0, padx=10, pady=10, sticky="w")
         CTkToolTip(self.labels[-1], "The number of nearest neighbors used to define the neighborhood of samples to use to generate the synthetic samples")
         self.entries.append(Spinbox(self, minimum_value=1, none_enable=False))
@@ -32,4 +32,4 @@ class ADASYNFrame(ctk.CTkScrollableFrame, Model):
         self.entries[-1].grid(row=0, column=1, padx=10, pady=10, sticky="we")
 
     def get(self):
-        return adasyn(*Model.get(self))
+        return adasyn(*EmbeddedScrollFrame.get(self))

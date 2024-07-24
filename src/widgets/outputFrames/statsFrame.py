@@ -79,6 +79,12 @@ class StatsFrame(ctk.CTkScrollableFrame):
         self.values["accuracy_deferral_train"] = ctk.CTkLabel(self, text="")
         self.values["accuracy_deferral_train"].grid(row=8, column=1, padx=10, pady=10, sticky="ewns")
 
+        # Number of features
+        self.labels["n_features"] = ctk.CTkLabel(self, text="Number of features in the base dataset", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["n_features"].grid(row=8, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["n_features"] = ctk.CTkLabel(self, text="")
+        self.values["n_features"].grid(row=8, column=1, padx=10, pady=10, sticky="ewns")
+
     def set(self, **kwargs):
         """
         Method used to set fields of the the frame
