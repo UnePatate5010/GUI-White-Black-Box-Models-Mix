@@ -34,6 +34,8 @@ class ScrollFrame(ctk.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(2, weight=1)
 
+        self.display = scroll_display_name
+
         # Display frame name
         self.name = ctk.CTkLabel(self, text=name, fg_color="#333333", corner_radius=10)
         self.name.grid(row=0, column=0, padx=10, pady=10, sticky="ewn")
@@ -92,8 +94,9 @@ class ScrollFrame(ctk.CTkFrame):
         :return: The selected element in the scrollable menu and a dictionnary from the corresponding inner frame
         :rtype: str, dict
         """
-        if self.current_frame == None:
-            return None
+        if self.current_frame == None: # This is fixed but kinda ugly. A better workaround should be found.
+            if self.display == "Select a resampling method": 
+                return None
             raise UnselectedItemError("An element was not selected", self.name.cget("text"))
 
         return self.frames[self.current_frame].get()
