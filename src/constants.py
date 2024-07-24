@@ -9,11 +9,16 @@ from widgets.modelFrames.svmFrame import SvmFrame
 from widgets.resamplingFrames.smoteFrame import SMOTEFrame
 from widgets.resamplingFrames.adasynFrame import ADASYNFrame
 
+from widgets.datasets.dimReduction.tsneFrame import TSNEFrame
+
 # Dictionnary associating models names to corresponding frame class (customtkinter)
 MODEL_FRAMES = {"Decision tree": DecisionTreeFrame, "Random forest": RandomForestFrame, "Support Vector Machine": SvmFrame}
 
 # Dictionnary associating resampling method names to corresponding frame class (customtkinter)
 RESAMPLING_FRAMES = {"SMOTE": SMOTEFrame, "ADASYN": ADASYNFrame, "None": ()}
+
+# Dictionnary associating dimensionality reduction method names to corresponding frame class (customtkinter)
+DIM_REDUCTION = {"TSNE": TSNEFrame, "None": ()}
 
 
 # Concatenation of MODEL_FRAMES and RESAMPLING_FRAMES

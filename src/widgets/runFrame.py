@@ -37,7 +37,11 @@ class RunFrame(ctk.CTkFrame):
             return
 
         # Format them correctly (convert dicts to reflect real arguments names)
-        ((X, y), percentage), grader, base, deferral, resampling = input
+        ((X, y), percentage, dim_red_method), grader, base, deferral, resampling = input
+        # Reduce dimension if needed
+        if dim_red_method != None and len(X[0]) > 2:
+            X = dim_red_method.fit_transform(X)
+
         # Call the main function
         model, grader, base, deferral, stats, (X, y), (X_val, y_val) = run(X, y, grader, base, deferral, resampling, percentage)
 

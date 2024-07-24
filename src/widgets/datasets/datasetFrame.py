@@ -7,6 +7,7 @@ from CTkToolTip import CTkToolTip
 from widgets.widgetExceptions import *
 import os
 from datasets.loadDataset import loadDataset
+from constants import DIM_REDUCTION
 
 
 class DatasetFrame(ctk.CTkFrame):
@@ -25,7 +26,7 @@ class DatasetFrame(ctk.CTkFrame):
 
         self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
         self.grid_columnconfigure(0, weight=1)
-        # self.grid_rowconfigure((1, 2), weight=1)
+        self.grid_rowconfigure(4, weight=1)
 
         # Display frame name
         self.name = ctk.CTkLabel(self, text="Dataset", fg_color="#333333", corner_radius=10)
@@ -37,12 +38,12 @@ class DatasetFrame(ctk.CTkFrame):
         # Scrollable menu
         self.optionmenu = ctk.CTkOptionMenu(self, width=250, values=["Select a dataset"], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
         self.optionmenu.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
-        self.ctkscroll = CTkScrollableDropdown(self.optionmenu, values=self.scrollValues, command=self.on_dropdown_select)
+        self.ctkscroll = CTkScrollableDropdown(self.optionmenu, values=self.scrollValues, command=self.on_dropdown_select_dataset)
 
         self.validation_label = None
         
 
-    def on_dropdown_select(self, frame):
+    def on_dropdown_select_dataset(self, frame):
         """Method called when an item is selected in the scrollable menu. Changes the displayed dataset.
         """
         self.optionmenu.set(frame)
@@ -57,6 +58,48 @@ class DatasetFrame(ctk.CTkFrame):
             self.validation_spinbox.set(20) # Default value
             self.validation_spinbox.grid(row=2, column=1, padx=10, pady=10, sticky="we")
 
+            # Scrollable menu
+            self.dimRedValues = DIM_REDUCTION.keys()
+            self.dimRedMenu = ctk.CTkOptionMenu(self, width=250, values=["Select a dimensionality reduction method"], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
+            self.dimRedMenu.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+            self.dimRedCtkscroll = CTkScrollableDropdown(self.dimRedMenu, values=self.dimRedValues, command=self.on_dropdown_select_reduction)
+
+            self.current_reduction = None # Name of the frame currently displayed
+            self.frames = {} # Dictionnary associating frame name to frame class
+    
+    def on_dropdown_select_reduction(self, frame):
+        """
+        Modify the displayed value on the scrollable menu and update displayed fields
+
+        :param frame: Selected element in the scrollable menu to display fields
+        :type frame: str
+        """
+        self.dimRedMenu.set(frame)  
+        self.update_fields(frame)
+        self.dimRedMenu.configure(fg_color="#1f6aa5", button_color="#144870", button_hover_color="#203a4f")
+
+    def update_fields(self, frame):
+        """
+        Update displayed fields depending on the provided frame name
+
+        :param frame: Selected element in the scrollable menu to display fields
+        :type frame: str
+        """
+        # Remove current displayed frame if existing
+        if self.current_reduction != None and self.current_reduction != "None":
+            self.frames[self.current_reduction].grid_remove()
+
+        # Instantiate the frame if not already existing (and stored in self.frames)
+        if frame != "None":
+            if frame not in self.frames:
+                self.frames[frame] =  DIM_REDUCTION[frame](self)
+
+
+            self.current_reduction = frame
+            self.frames[frame].grid(row=4, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+        else:
+            self.current_reduction = None
+
     def get(self):
         """
         Method called to retrieve input data from the frame itself.
@@ -66,7 +109,11 @@ class DatasetFrame(ctk.CTkFrame):
         """
         if self.optionmenu.get() == "Select a dataset":
             raise UnselectedItemError("Missing item", self.name.cget("text"))
-        return loadDataset(self.optionmenu.get()), self.validation_spinbox.get() / 100
+        if self.current_reduction == None:
+            ret = None
+        else:
+            ret = self.frames[self.current_reduction].get()
+        return loadDataset(self.optionmenu.get()), self.validation_spinbox.get() / 100, ret
     
     def freeze(self):
         """

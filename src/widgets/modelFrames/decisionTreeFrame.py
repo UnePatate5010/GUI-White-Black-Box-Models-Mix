@@ -7,10 +7,10 @@ import customtkinter as ctk
 from CTkToolTip import CTkToolTip
 from widgets.CTkScrollableDropdown.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 from widgets.CTkSpinbox.CtkSpinbox import Spinbox
-from widgets.modelFrames.model import Model
+from widgets.embeddedScrollFrame import EmbeddedScrollFrame
 from models.decisionTree import decisionTree
 
-class DecisionTreeFrame(ctk.CTkScrollableFrame, Model):
+class DecisionTreeFrame(ctk.CTkScrollableFrame, EmbeddedScrollFrame):
     """
     Frame containing all entry fields for Decision Tree Clasifier.
 
@@ -20,7 +20,7 @@ class DecisionTreeFrame(ctk.CTkScrollableFrame, Model):
 
     def __init__(self, master):
         ctk.CTkScrollableFrame.__init__(self, master)
-        Model.__init__(self)
+        EmbeddedScrollFrame.__init__(self)
 
         self.grid_columnconfigure((0, 1), weight=1)
 
@@ -75,4 +75,4 @@ class DecisionTreeFrame(ctk.CTkScrollableFrame, Model):
         self.entries[-1].grid(row=5, column=1, padx=10, pady=10, sticky="we")
 
     def get(self):
-        return decisionTree(*Model.get(self))
+        return decisionTree(*EmbeddedScrollFrame.get(self))

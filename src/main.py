@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from widgets.scrollFrame import ScrollFrame
-from widgets.dataset.datasetFrame import DatasetFrame
+from widgets.datasets.datasetFrame import DatasetFrame
 from widgets.runFrame import RunFrame
 from widgets.outputFrames.graphFrame import GraphFrame
 from widgets.outputFrames.statsFrame import StatsFrame
