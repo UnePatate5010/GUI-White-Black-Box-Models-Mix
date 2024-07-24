@@ -39,7 +39,8 @@ class RunFrame(ctk.CTkFrame):
         # Format them correctly (convert dicts to reflect real arguments names)
         ((X, y), percentage, dim_red_method), grader, base, deferral, resampling = input
         # Reduce dimension if needed
-        if dim_red_method != None and len(X[0]) > 2:
+        n_features = len(X[0])
+        if dim_red_method != None and n_features > 2:
             X = dim_red_method.fit_transform(X)
 
         # Call the main function
@@ -55,7 +56,8 @@ class RunFrame(ctk.CTkFrame):
                               accuracy_train = round(stats[4], 3), 
                               nb_hard_train = str(round(stats[5], 3)) + " out of " + str(len(X)) + " elements (" + str(round(stats[5]/len(X) * 100, 3)) + "%)", 
                               accuracy_base_train = round(stats[6], 3), 
-                              accuracy_deferral_train = round(stats[7], 3))
+                              accuracy_deferral_train = round(stats[7], 3),
+                              n_features = n_features)
         self.master.schema.draw(base)
 
         # Unfreeze all fields
