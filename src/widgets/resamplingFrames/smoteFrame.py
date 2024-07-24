@@ -24,7 +24,7 @@ class SMOTEFrame(ctk.CTkScrollableFrame, EmbeddedScrollFrame):
         self.grid_columnconfigure((0, 1), weight=1)
 
         # k neighbors entry: spinbox menu
-        self.labels.append(ctk.CTkLabel(self, text="K-neighbors", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10))
+        self.labels.append(ctk.CTkLabel(self, text="K-neighbors", wraplength=master.winfo_width()//2 - 20, justify="left", padx=10))
         self.labels[-1].grid(row=0, column=0, padx=10, pady=10, sticky="w")
         CTkToolTip(self.labels[-1], "The number of nearest neighbors used to define the neighborhood of samples to use to generate the synthetic samples")
         self.entries.append(Spinbox(self, minimum_value=1, none_enable=False))

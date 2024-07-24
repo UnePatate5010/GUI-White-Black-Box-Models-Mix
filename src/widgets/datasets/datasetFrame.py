@@ -41,6 +41,16 @@ class DatasetFrame(ctk.CTkFrame):
         self.ctkscroll = CTkScrollableDropdown(self.optionmenu, values=self.scrollValues, command=self.on_dropdown_select_dataset)
 
         self.validation_label = None
+
+        # Scrollable menu
+        self.dimRedValues = DIM_REDUCTION.keys()
+        self.dimRedMenu = ctk.CTkOptionMenu(self, width=250, values=["Select a dimensionality reduction method"], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
+        self.dimRedMenu.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+        self.dimRedCtkscroll = CTkScrollableDropdown(self.dimRedMenu, values=self.dimRedValues, command=self.on_dropdown_select_reduction)
+
+        self.current_reduction = None # Name of the frame currently displayed
+        self.frames = {} # Dictionnary associating frame name to frame class
+
         
 
     def on_dropdown_select_dataset(self, frame):
@@ -58,14 +68,6 @@ class DatasetFrame(ctk.CTkFrame):
             self.validation_spinbox.set(20) # Default value
             self.validation_spinbox.grid(row=2, column=1, padx=10, pady=10, sticky="we")
 
-            # Scrollable menu
-            self.dimRedValues = DIM_REDUCTION.keys()
-            self.dimRedMenu = ctk.CTkOptionMenu(self, width=250, values=["Select a dimensionality reduction method"], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
-            self.dimRedMenu.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
-            self.dimRedCtkscroll = CTkScrollableDropdown(self.dimRedMenu, values=self.dimRedValues, command=self.on_dropdown_select_reduction)
-
-            self.current_reduction = None # Name of the frame currently displayed
-            self.frames = {} # Dictionnary associating frame name to frame class
     
     def on_dropdown_select_reduction(self, frame):
         """
