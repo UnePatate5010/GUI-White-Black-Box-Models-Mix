@@ -42,7 +42,6 @@ class RunFrame(ctk.CTkFrame):
         n_features = len(X[0])
         if dim_red_method != None and n_features > 2:
             X = dim_red_method.fit_transform(X)
-
         # Call the main function
         model, grader, base, deferral, stats, (X, y), (X_val, y_val) = run(X, y, grader, base, deferral, resampling, percentage)
 

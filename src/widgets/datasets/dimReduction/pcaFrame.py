@@ -29,8 +29,8 @@ class PCAFrame(ctk.CTkScrollableFrame, EmbeddedScrollFrame):
         self.labels.append(ctk.CTkLabel(self, text="SVD solver", wraplength=master.winfo_width()//2 - 20, justify="left", padx=10))
         self.labels[-1].grid(row=1, column=0, padx=10, pady=10, sticky="w")
         CTkToolTip(self.labels[-1], "'auto': Chose one of the solver depending on the amount of features.\n 'full': Run exact full SVD calling the standard LAPACK solver via scipy.linalg.svd and select the components by postprocessing.\n'arpack': Run SVD truncated to n_components calling ARPACK solver via scipy.sparse.linalg.svds. It requires strictly 0 < n_components < min(X.shape).\n 'randomized': Run randomized SVD by the method of Halko et al.")
-        self.scrollValues = ["auto", "full", "arpack", "randomiwed"]
-        self.entries.append(ctk.CTkOptionMenu(self, values=["pca"]))
+        self.scrollValues = ["auto", "full", "arpack", "randomiwed", "covariance_eigh"]
+        self.entries.append(ctk.CTkOptionMenu(self, values=["auto"]))
         self.entries[-1].grid(row=1, column=1, padx=10, pady=10, sticky="we")
         CTkScrollableDropdown(self.entries[-1], values=self.scrollValues)
 
