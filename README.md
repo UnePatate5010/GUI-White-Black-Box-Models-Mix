@@ -14,6 +14,8 @@ The main code is located in `src/` which is divided in different categories. For
     ├── datasets/
     ├── src/
     │   ├── datasets/
+    │   │   ├── dimReduction/
+    │   │   └── ...
     │   ├── experiment/
     │   ├── models/
     │   ├── resamplingMethods/
@@ -50,8 +52,8 @@ Please refer to the [github issues section](https://github.com/UnePatate5010/GUI
 ## Expansions
 Different expansions are currently being considered. All of them might no be implemented though.
 - Documentation (user and developer)
-- Dimensionality reduction techniques to handle datasets with more than two features
 - Support for different datasets file types (currently only CSV files with a specific format are supported)
+- More data resampling methods and classifier (especially fuzzy classifiers)
 - More QoL features ?
 
 ## Gallery
