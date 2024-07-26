@@ -55,6 +55,9 @@ class DatasetFrame(ctk.CTkFrame):
 
     def on_dropdown_select_dataset(self, frame):
         """Method called when an item is selected in the scrollable menu. Changes the displayed dataset.
+
+        :param frame: Selected element in the scrollable menu to display fields
+        :type frame: str
         """
         self.optionmenu.set(frame)
         self.optionmenu.configure(fg_color="#1f6aa5", button_color="#144870", button_hover_color="#203a4f")
@@ -71,7 +74,7 @@ class DatasetFrame(ctk.CTkFrame):
     
     def on_dropdown_select_reduction(self, frame):
         """
-        Modify the displayed value on the scrollable menu and update displayed fields
+        Modify the displayed value on the scrollable menu and update displayed fields (for the dimensionality reduction technique menu)
 
         :param frame: Selected element in the scrollable menu to display fields
         :type frame: str
