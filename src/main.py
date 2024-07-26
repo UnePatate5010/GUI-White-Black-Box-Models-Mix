@@ -96,8 +96,8 @@ class GUI(ctk.CTk):
         """Returns a dictionnary wich associate each input frame to a dictionnary of inputed values.
     
         :raises UnselectedItemError: raises an error if a field was not properly filled.
-        :return: A dictionnary of values inputed by the user in each frame.
-        :rtype: dict ({str: (str:{})})
+        :return: A List of values inputed by the user in each frame.
+        :rtype: List
         """
         error = []
         L = []
@@ -126,5 +126,5 @@ class GUI(ctk.CTk):
         return L
 
 window = GUI()
-window.protocol("WM_DELETE_WINDOW", window.quit)
+window.protocol("WM_DELETE_WINDOW", window.quit) # Prevent some errors related to matplotlib plots not closing correctly
 window.mainloop()

@@ -109,8 +109,8 @@ class DatasetFrame(ctk.CTkFrame):
         """
         Method called to retrieve input data from the frame itself.
 
-        :return: The selected element in the scrollable menu
-        :rtype: str
+        :return: The selected element in the scrollable menu, the percentage of validation set and the instanciated dimensionality reduction technique
+        :rtype: str, float, <object> or None
         """
         if self.optionmenu.get() == "Select a dataset":
             raise UnselectedItemError("Missing item", self.name.cget("text"))
