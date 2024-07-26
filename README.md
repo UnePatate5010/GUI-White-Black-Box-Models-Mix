@@ -56,4 +56,4 @@ Different expansions are currently being considered. All of them might no be imp
 
 ## Gallery
 
-![](Example.png)
+![](GUI.png)
