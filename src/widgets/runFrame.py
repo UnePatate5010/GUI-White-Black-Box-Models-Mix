@@ -36,17 +36,19 @@ class RunFrame(ctk.CTkFrame):
             self.master.unfreeze()
             return
 
-        # Format them correctly (convert dicts to reflect real arguments names)
+        # Retrieve the different outputs
         ((X, y), percentage, dim_red_method), grader, base, deferral, resampling = input
+
         # Reduce dimension if needed
         n_features = len(X[0])
         if dim_red_method != None and n_features > 2:
             X = dim_red_method.fit_transform(X)
+
         # Call the main function
         model, grader, base, deferral, stats, (X, y), (X_val, y_val) = run(X, y, grader, base, deferral, resampling, percentage)
 
         # Update output frames with results
-        if len(X[0]) <= 2:
+        if len(X[0]) <= 2: # Draw only if 2D
             self.master.graph.draw(X, y, X_val, y_val, model, grader)
         self.master.stats.set(accuracy_val = round(stats[0], 3), 
                               nb_hard_val = str(stats[1]) + " out of " + str(len(X_val)) + " elements (" + str(round(stats[1]/len(X_val) * 100, 3)) + "%)", 
