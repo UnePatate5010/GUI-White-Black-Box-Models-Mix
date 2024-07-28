@@ -25,8 +25,8 @@ class DatasetFrame(ctk.CTkFrame):
         super().__init__(master)
 
         self.grid_propagate(False) # Prevent the frame from changing size depending on widgets inside
-        self.grid_columnconfigure(0, weight=1)
-        self.grid_rowconfigure(4, weight=1)
+        self.grid_columnconfigure((1), weight=1)
+        self.grid_rowconfigure(5, weight=1)
 
         # Display frame name
         self.name = ctk.CTkLabel(self, text="Dataset", fg_color="#333333", corner_radius=10)
@@ -45,7 +45,7 @@ class DatasetFrame(ctk.CTkFrame):
         # Scrollable menu
         self.dimRedValues = DIM_REDUCTION.keys()
         self.dimRedMenu = ctk.CTkOptionMenu(self, width=250, values=["Select a dimensionality reduction method"], fg_color="#a51f6a", button_color="#701448", button_hover_color="#4f203a")
-        self.dimRedMenu.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+        self.dimRedMenu.grid(row=4, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
         self.dimRedCtkscroll = CTkScrollableDropdown(self.dimRedMenu, values=self.dimRedValues, command=self.on_dropdown_select_reduction)
 
         self.current_reduction = None # Name of the frame currently displayed
@@ -70,6 +70,14 @@ class DatasetFrame(ctk.CTkFrame):
             self.test_spinbox = Spinbox(self, minimum_value=1, none_enable=False)
             self.test_spinbox.set(20) # Default value
             self.test_spinbox.grid(row=2, column=1, padx=10, pady=10, sticky="we")
+
+            self.random_label = ctk.CTkLabel(self, text="Random split of the dataset", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+            CTkToolTip(self.random_label, "If True, the dataset is randomly split between the training and test sets. If False, the last 'X'% of the dataset will be the test set and the rest the training set (where 'X' is the value chosen in the previous field)")
+            self.random_label.grid(row=3, column=0, padx=10, pady=10, sticky="w")
+            self.random_menu = ctk.CTkOptionMenu(self, width=250, values=["True"])
+            self.random_menu.grid(row=3, column=1, padx=10, pady=10, sticky="we")
+            self.random_scroll = CTkScrollableDropdown(self.random_menu, values=["True", "False"])
+
 
     
     def on_dropdown_select_reduction(self, frame):
@@ -101,7 +109,7 @@ class DatasetFrame(ctk.CTkFrame):
 
 
             self.current_reduction = frame
-            self.frames[frame].grid(row=4, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+            self.frames[frame].grid(row=5, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
         else:
             self.current_reduction = None
 
@@ -109,8 +117,9 @@ class DatasetFrame(ctk.CTkFrame):
         """
         Method called to retrieve input data from the frame itself.
 
-        :return: The selected element in the scrollable menu, the percentage of test set and the instanciated dimensionality reduction technique
-        :rtype: str, float, <object> or None
+        :return: The selected element in the scrollable menu, the percentage of test set, a boolean corresponding to if the split is randomized or not
+          and the instanciated dimensionality reduction technique
+        :rtype: str, float, boolean, <object> or None
         """
         if self.optionmenu.get() == "Select a dataset":
             raise UnselectedItemError("Missing item", self.name.cget("text"))
@@ -118,7 +127,11 @@ class DatasetFrame(ctk.CTkFrame):
             ret = None
         else:
             ret = self.frames[self.current_reduction].get()
-        return loadDataset(self.optionmenu.get()), self.test_spinbox.get() / 100, ret
+        if self.random_menu.get() == "True":
+            rand_split = True
+        else:
+            rand_split = False
+        return loadDataset(self.optionmenu.get()), self.test_spinbox.get()  / 100, rand_split, ret
     
     def freeze(self):
         """

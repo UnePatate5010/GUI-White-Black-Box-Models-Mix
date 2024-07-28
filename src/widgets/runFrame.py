@@ -37,7 +37,7 @@ class RunFrame(ctk.CTkFrame):
             return
 
         # Retrieve the different outputs
-        ((X, y), percentage, dim_red_method), grader, base, deferral, resampling = input
+        ((X, y), percentage, rand_split, dim_red_method), grader, base, deferral, resampling = input
 
         # Reduce dimension if needed
         n_features = len(X[0])
@@ -45,7 +45,7 @@ class RunFrame(ctk.CTkFrame):
             X = dim_red_method.fit_transform(X)
 
         # Call the main function
-        model, grader, base, deferral, stats, (X, y), (X_test, y_test) = run(X, y, grader, base, deferral, resampling, percentage)
+        model, grader, base, deferral, stats, (X, y), (X_test, y_test) = run(X, y, grader, base, deferral, resampling, percentage, rand_split)
 
         # Update output frames with results
         if len(X[0]) <= 2: # Draw only if 2D

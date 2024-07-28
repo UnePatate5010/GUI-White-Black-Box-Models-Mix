@@ -130,7 +130,7 @@ class Fuse():
         return acc, hard, acc_base, acc_deferral
     
 
-def run(X, y, grader, base, deferral, resampling, percentage):
+def run(X, y, grader, base, deferral, resampling, percentage, rand_split):
     """Run function that runs an experiment based on provided data.
 
     :param X: Dataset
@@ -147,18 +147,21 @@ def run(X, y, grader, base, deferral, resampling, percentage):
     :type resampling: class
     :param percentage: percentage of dataset used as validation set
     :type percentage: float
+    :param rand_split: if the split is randomized or not
+    :type rand_split: boolean
     :return: Trained model, trained grader, trained base classifier, trained deferral classifier, statistics, training_set, validation_set
     :rtype: class, class, class, class, tuple(float, int, float, float), tuple(list, list), tuple(list, list)
     """
 
     # Training and validation set
     training_size = round(percentage * len(X))
-    indexes = np.arange(len(X))
-    np.random.shuffle(indexes)
+    if rand_split:
+        indexes = np.arange(len(X))
+        np.random.shuffle(indexes)
 
-    # Shuffle
-    X = X[indexes]
-    y = y[indexes]
+        # Shuffle
+        X = X[indexes]
+        y = y[indexes]
 
     X_val = X[:training_size]
     y_val = y[:training_size]
