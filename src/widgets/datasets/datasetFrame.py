@@ -40,7 +40,7 @@ class DatasetFrame(ctk.CTkFrame):
         self.optionmenu.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
         self.ctkscroll = CTkScrollableDropdown(self.optionmenu, values=self.scrollValues, command=self.on_dropdown_select_dataset)
 
-        self.validation_label = None
+        self.test_label = None
 
         # Scrollable menu
         self.dimRedValues = DIM_REDUCTION.keys()
@@ -62,14 +62,14 @@ class DatasetFrame(ctk.CTkFrame):
         self.optionmenu.set(frame)
         self.optionmenu.configure(fg_color="#1f6aa5", button_color="#144870", button_hover_color="#203a4f")
 
-        if not self.validation_label:
-            # Percentage of data for the validation set
-            self.validation_label = ctk.CTkLabel(self, text="Percentage of the validation set", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
-            self.validation_label.grid(row=2, column=0, padx=10, pady=10, sticky="w")
-            CTkToolTip(self.validation_label, "The percentage of the dataset that will be used as a validation set")
-            self.validation_spinbox = Spinbox(self, minimum_value=1, none_enable=False)
-            self.validation_spinbox.set(20) # Default value
-            self.validation_spinbox.grid(row=2, column=1, padx=10, pady=10, sticky="we")
+        if not self.test_label:
+            # Percentage of data for the test set
+            self.test_label = ctk.CTkLabel(self, text="Percentage of the test set", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+            self.test_label.grid(row=2, column=0, padx=10, pady=10, sticky="w")
+            CTkToolTip(self.test_label, "The percentage of the dataset that will be used as a test set")
+            self.test_spinbox = Spinbox(self, minimum_value=1, none_enable=False)
+            self.test_spinbox.set(20) # Default value
+            self.test_spinbox.grid(row=2, column=1, padx=10, pady=10, sticky="we")
 
     
     def on_dropdown_select_reduction(self, frame):
@@ -109,7 +109,7 @@ class DatasetFrame(ctk.CTkFrame):
         """
         Method called to retrieve input data from the frame itself.
 
-        :return: The selected element in the scrollable menu, the percentage of validation set and the instanciated dimensionality reduction technique
+        :return: The selected element in the scrollable menu, the percentage of test set and the instanciated dimensionality reduction technique
         :rtype: str, float, <object> or None
         """
         if self.optionmenu.get() == "Select a dataset":
@@ -118,7 +118,7 @@ class DatasetFrame(ctk.CTkFrame):
             ret = None
         else:
             ret = self.frames[self.current_reduction].get()
-        return loadDataset(self.optionmenu.get()), self.validation_spinbox.get() / 100, ret
+        return loadDataset(self.optionmenu.get()), self.test_spinbox.get() / 100, ret
     
     def freeze(self):
         """

@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure 
 from matplotlib.lines import Line2D
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import matplotlib.colors as mcolors
 import numpy as np
 
 class GraphFrame(ctk.CTkFrame):
@@ -24,7 +25,7 @@ class GraphFrame(ctk.CTkFrame):
         self.grid_rowconfigure(1, weight=1)
 
         # Display frame name
-        self.name = ctk.CTkLabel(self, text="Graph", fg_color="#333333", corner_radius=10)
+        self.name = ctk.CTkLabel(self, text="Graphs", fg_color="#333333", corner_radius=10)
         self.name.grid(row=0, column=1, padx=10, pady=10, sticky="ewn")
 
         self.left_button = ctk.CTkButton(self, text="←", command=self.left)
@@ -65,7 +66,7 @@ class GraphFrame(ctk.CTkFrame):
         :type X: list
         :param y: Labels of the dataset
         :type y: list
-        :param X_val: Validation set
+        :param X_val: test set
         :type X_val: list
         :param y_val: Labels of the dataset
         :type y_val: list
@@ -100,7 +101,7 @@ class GraphFrame(ctk.CTkFrame):
         # Plot regions for the second set of labels using `grader`
         Z2 = grader.predict(np.c_[xx.ravel(), yy.ravel()])
         Z2 = Z2.reshape(xx.shape)
-        area = plot.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
+        area = plot.contourf(xx, yy, Z2, alpha=0.7, cmap=plt.cm.RdYlBu_r)
 
         # Plot decision boundary for the first set of labels using `model`
         Z1 = model.predict(np.c_[xx.ravel(), yy.ravel()])
@@ -116,7 +117,7 @@ class GraphFrame(ctk.CTkFrame):
         handles, labels = plot.get_legend_handles_labels()
         handles.append(contour_legend)
         labels.append('Decision Boundary')
-        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s'))
+        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s', alpha=0.7))
         labels.append('Hard region')
         plot.legend(handles=handles, labels=labels)
         plot.title.set_text("Graph of the dataset with the 'hard' region and the decision boundary of the model (Training set)")
@@ -127,7 +128,7 @@ class GraphFrame(ctk.CTkFrame):
         self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
         plot2 = self.fig[-1].add_subplot(111)
 
-        area = plot2.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
+        area = plot2.contourf(xx, yy, Z2, alpha=0.7, cmap=plt.cm.RdYlBu_r)
 
 
         # Plot decision boundary for the first set of labels using `base`
@@ -151,17 +152,17 @@ class GraphFrame(ctk.CTkFrame):
         handles.append(contour_legend2)
         labels.append('Decision Boundary Base')
         labels.append('Decision Boundary Deferral')
-        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s'))
+        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s', alpha=0.7))
         labels.append('Hard region')
         plot2.legend(handles=handles, labels=labels)
         plot2.title.set_text("Graph of the dataset with the decision boundaries of the base and deferral classifiers (Training set)")
 
 
-        # Idem as first figure but with validation set
+        # Idem as first figure but with test set
         self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
         plot3 = self.fig[-1].add_subplot(111)
 
-        area = plot3.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
+        area = plot3.contourf(xx, yy, Z2, alpha=0.7, cmap=plt.cm.RdYlBu_r)
         curve = plot3.contour(xx, yy, Z1, levels=len(y_u), linewidths=1, colors='black')
 
         for i in y_u:
@@ -172,16 +173,16 @@ class GraphFrame(ctk.CTkFrame):
         handles, labels = plot.get_legend_handles_labels()
         handles.append(contour_legend)
         labels.append('Decision Boundary')
-        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s'))
+        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s', alpha=0.7))
         labels.append('Hard region')
         plot3.legend(handles=handles, labels=labels)
-        plot3.title.set_text("Graph of the dataset with the 'hard' region and the decision boundary of the model (Validation set)")
+        plot3.title.set_text("Graph of the dataset with the 'hard' region and the decision boundary of the model (test set)")
 
-        # Idem as second figure but with validation set
+        # Idem as second figure but with test set
         self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
         plot4 = self.fig[-1].add_subplot(111)
 
-        area = plot4.contourf(xx, yy, Z2, alpha=0.8, cmap=plt.cm.RdYlBu_r)
+        area = plot4.contourf(xx, yy, Z2, alpha=0.7, cmap=plt.cm.RdYlBu_r)
         curve1 = plot4.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='green')
         curve2 = plot4.contour(xx, yy, Z4, levels=len(y_u), linewidths=2, colors='violet')
 
@@ -195,10 +196,10 @@ class GraphFrame(ctk.CTkFrame):
         handles.append(contour_legend2)
         labels.append('Decision Boundary Base')
         labels.append('Decision Boundary Deferral')
-        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s'))
+        handles.append(Line2D([0], [0], color='white', markerfacecolor=plt.cm.RdYlBu_r(0.9), markersize=10, marker='s', alpha=0.7))
         labels.append('Hard region')
         plot4.legend(handles=handles, labels=labels)
-        plot4.title.set_text("Graph of the dataset with the decision boundaries of the base and deferral classifiers (Validation set)")
+        plot4.title.set_text("Graph of the dataset with the decision boundaries of the base and deferral classifiers (test set)")
 
         # Display first figure
         self.canvas = FigureCanvasTkAgg(self.fig[0], master = self)

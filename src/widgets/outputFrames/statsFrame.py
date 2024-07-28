@@ -29,30 +29,30 @@ class StatsFrame(ctk.CTkScrollableFrame):
         self.labels = {}
         self.values = {}
 
-        # Validation set
+        # test set
         # Accuracy
-        self.labels["accuracy_val"] = ctk.CTkLabel(self, text="Accuracy of the whole model (validation set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
-        self.labels["accuracy_val"].grid(row=1, column=0, padx=10, pady=10, sticky="ewns")
-        self.values["accuracy_val"] = ctk.CTkLabel(self, text="")
-        self.values["accuracy_val"].grid(row=1, column=1, padx=10, pady=10, sticky="ewns")
+        self.labels["accuracy_test"] = ctk.CTkLabel(self, text="Accuracy of the whole model (test set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_test"].grid(row=1, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_test"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_test"].grid(row=1, column=1, padx=10, pady=10, sticky="ewns")
 
         # Number of elements declared as hard
-        self.labels["nb_hard_val"] = ctk.CTkLabel(self, text="Number of hard elements (validation set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
-        self.labels["nb_hard_val"].grid(row=2, column=0, padx=10, pady=10, sticky="ewns")
-        self.values["nb_hard_val"] = ctk.CTkLabel(self, text="")
-        self.values["nb_hard_val"].grid(row=2, column=1, padx=10, pady=10, sticky="ewns")
+        self.labels["nb_hard_test"] = ctk.CTkLabel(self, text="Number of hard elements (test set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["nb_hard_test"].grid(row=2, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["nb_hard_test"] = ctk.CTkLabel(self, text="")
+        self.values["nb_hard_test"].grid(row=2, column=1, padx=10, pady=10, sticky="ewns")
 
         # Accuracy of the base classifier alone
-        self.labels["accuracy_base_val"] = ctk.CTkLabel(self, text="Accuracy of the base classifier (validation set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
-        self.labels["accuracy_base_val"].grid(row=3, column=0, padx=10, pady=10, sticky="ewns")
-        self.values["accuracy_base_val"] = ctk.CTkLabel(self, text="")
-        self.values["accuracy_base_val"].grid(row=3, column=1, padx=10, pady=10, sticky="ewns")
+        self.labels["accuracy_base_test"] = ctk.CTkLabel(self, text="Accuracy of the base classifier (test set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_base_test"].grid(row=3, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_base_test"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_base_test"].grid(row=3, column=1, padx=10, pady=10, sticky="ewns")
 
         # Accuracy of the deferral classifier alone
-        self.labels["accuracy_deferral_val"] = ctk.CTkLabel(self, text="Accuracy of the deferral classifier (validation set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
-        self.labels["accuracy_deferral_val"].grid(row=4, column=0, padx=10, pady=10, sticky="ewns")
-        self.values["accuracy_deferral_val"] = ctk.CTkLabel(self, text="")
-        self.values["accuracy_deferral_val"].grid(row=4, column=1, padx=10, pady=10, sticky="ewns")
+        self.labels["accuracy_deferral_test"] = ctk.CTkLabel(self, text="Accuracy of the deferral classifier (test set)", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
+        self.labels["accuracy_deferral_test"].grid(row=4, column=0, padx=10, pady=10, sticky="ewns")
+        self.values["accuracy_deferral_test"] = ctk.CTkLabel(self, text="")
+        self.values["accuracy_deferral_test"].grid(row=4, column=1, padx=10, pady=10, sticky="ewns")
         
         # Training set
         # Accuracy

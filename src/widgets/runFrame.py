@@ -45,15 +45,15 @@ class RunFrame(ctk.CTkFrame):
             X = dim_red_method.fit_transform(X)
 
         # Call the main function
-        model, grader, base, deferral, stats, (X, y), (X_val, y_val) = run(X, y, grader, base, deferral, resampling, percentage)
+        model, grader, base, deferral, stats, (X, y), (X_test, y_test) = run(X, y, grader, base, deferral, resampling, percentage)
 
         # Update output frames with results
         if len(X[0]) <= 2: # Draw only if 2D
-            self.master.graph.draw(X, y, X_val, y_val, model, grader)
-        self.master.stats.set(accuracy_val = round(stats[0], 3), 
-                              nb_hard_val = str(stats[1]) + " out of " + str(len(X_val)) + " elements (" + str(round(stats[1]/len(X_val) * 100, 3)) + "%)", 
-                              accuracy_base_val = round(stats[2], 3), 
-                              accuracy_deferral_val = round(stats[3], 3),
+            self.master.graph.draw(X, y, X_test, y_test, model, grader)
+        self.master.stats.set(accuracy_test = round(stats[0], 3), 
+                              nb_hard_test = str(stats[1]) + " out of " + str(len(X_test)) + " elements (" + str(round(stats[1]/len(X_test) * 100, 3)) + "%)", 
+                              accuracy_base_test = round(stats[2], 3), 
+                              accuracy_deferral_test = round(stats[3], 3),
                               accuracy_train = round(stats[4], 3), 
                               nb_hard_train = str(round(stats[5], 3)) + " out of " + str(len(X)) + " elements (" + str(round(stats[5]/len(X) * 100, 3)) + "%)", 
                               accuracy_base_train = round(stats[6], 3), 
