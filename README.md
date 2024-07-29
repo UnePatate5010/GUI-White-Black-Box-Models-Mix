@@ -1,8 +1,8 @@
 # GUI-White-Black-Box-Models-Mix
 
-This repository contains the code of a GUI developped during a 3-month intership in the Computer Intelligence Laboratory of Osaka Metropolitan University under the supervision of Professor Yusuke Nojima.
+This repository contains the code of a GUI developed during a 3-month internship in the Computer Intelligence Laboratory of Osaka Metropolitan University under the supervision of Professor Yusuke Nojima.
 
-It consists in a simple GUI where the user can select differents classifiers and their hyperparameters and run experiments. Results are then displayed in the form of graphs, 
+It consists in a simple GUI where the user can select different classifiers and their hyperparameters and run experiments. Results are then displayed in the form of graphs, 
 schemas and statistics. The goal was to help understanding the “Integrating White and Black Box Techniques for Interpretable Machine Learning” research paper written by Eric Vernon, Naoki Masuyama and Yusuke Nojima (all from Osaka Metropolitan University).
 
 
@@ -40,7 +40,7 @@ Currently, the app can be launched by running the `main.py` file using the follo
 ```console
 python3 ./src/main.py
 ```
-The file must be runned from the root of the project.
+The file must be run from the root of the project.
 
  It will open a window with different scrollable menus. Models, datasets and resampling method can be selected using the said menus. Some parameters will then be displayed and can be tweaked to tune the experiment. When everything is set, press the `run` button to launch the experiment. Results will then be displayed in dedicated frames.
 
