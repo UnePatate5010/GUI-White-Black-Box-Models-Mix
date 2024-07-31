@@ -25,6 +25,8 @@ Contents
 
    output_frames
 
+   components
+
    extending
 
    additional
