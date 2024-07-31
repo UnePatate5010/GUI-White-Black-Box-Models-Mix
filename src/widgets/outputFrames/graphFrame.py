@@ -25,7 +25,7 @@ class GraphFrame(ctk.CTkFrame):
         self.grid_rowconfigure(1, weight=1)
 
         # Display frame name
-        self.name = ctk.CTkLabel(self, text="Graphs", fg_color="#333333", corner_radius=10)
+        self.name = ctk.CTkLabel(self, text="Graphs", fg_color="#727272", corner_radius=10)
         self.name.grid(row=0, column=1, padx=10, pady=10, sticky="ewn")
 
         self.left_button = ctk.CTkButton(self, text="←", command=self.left)
