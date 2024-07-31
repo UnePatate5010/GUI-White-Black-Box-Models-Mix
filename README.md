@@ -12,6 +12,7 @@ The main code is located in `src/` which is divided in different categories. For
 .
 └── GUI/
     ├── datasets/
+    ├── docs/
     ├── src/
     │   ├── datasets/
     │   │   ├── dimReduction/
