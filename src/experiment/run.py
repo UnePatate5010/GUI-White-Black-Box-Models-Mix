@@ -180,9 +180,9 @@ def run(X, y, grader, base, deferral, resampling, percentage, rand_split):
     X_grader = X
     y_grader = np.zeros((len(X_grader))) 
     y_grader[indexes] = 1 # Label 0: classified correctly / label 1: classified incorrectly
+
     # Data augmentation
-    if len(np.unique(y_grader)) > 1 and resampling != None: # Prevents cases where the base classifier is too good or there is no resampling method selected
-        X_grader, y_grader = resampling.fit_resample(X_grader, y_grader)
+    X_grader, y_grader = resampling.fit_resample(X_grader, y_grader)
 
     # Train
     grader = grader.fit(X_grader, y_grader)
