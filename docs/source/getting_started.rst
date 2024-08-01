@@ -19,6 +19,9 @@ be installed using ``pip`` for example::
 
     pip install -r ./requirements.txt
 
+To compile the documentation (if needed), some additional packages are needed and can be installed with::
+
+    pip install -r ./requirements_docs.txt
 
 First use
 ---------
