@@ -6,7 +6,7 @@
 GUI-White-Black-Box-Models-Mix documentation
 ============================================
 
-Welcome to the documentation of GUI-White-Black-Box-Models-Mix. This GUI is a intership project at Osaka MEtropolitan University. The repository can be found
+Welcome to the documentation of GUI-White-Black-Box-Models-Mix. This GUI is a intership project at Osaka Metropolitan University. The repository can be found
 on `GitHub <https://github.com/UnePatate5010/GUI-White-Black-Box-Models-Mix>`_. The goal is to provide an interface in which users can try out an ensemble 
 classifier, with a lot of different parameters and statistics. Check the :doc:`getting_started` section for basic explanations.
 
