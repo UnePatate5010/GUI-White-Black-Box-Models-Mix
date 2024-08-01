@@ -29,7 +29,7 @@ For instance, the two themes look like:
 Tooltips
 --------
 
-Tooltips appears when hovering parameters of the different methods, techiques, classifiers. They provides an explanation of the corresponding parameter.
+Tooltips appear when hovering parameters of the different methods, techiques, classifiers. They provide an explanation of the corresponding parameter.
 
 .. image:: img/tooltip.png
     :width: 500
