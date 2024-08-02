@@ -12,7 +12,7 @@ This section lists the different datasets, classifiers, etc, provided by the GUI
 * Classifiers
     * Decision Tree (`sklearn <https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html>`_)
     * Random Forest (`sklearn <https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html>`_)
-    * Support Vector Machine (`skleanr <https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html>`_)
+    * Support Vector Machine (`sklearn <https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html>`_)
 * Data resampling methods
     * SMOTE (`imblearn <https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html>`_)
     * ADASYN (`imblearn <https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.ADASYN.html>`_)

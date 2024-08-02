@@ -5,6 +5,7 @@ from enum import Enum
 from widgets.modelFrames.decisionTreeFrame import DecisionTreeFrame
 from widgets.modelFrames.randomForestFrame import RandomForestFrame
 from widgets.modelFrames.svmFrame import SvmFrame
+from widgets.modelFrames.fuzzyFrame import FuzzyFrame
 
 from widgets.resamplingFrames.smoteFrame import SMOTEFrame
 from widgets.resamplingFrames.adasynFrame import ADASYNFrame
@@ -15,7 +16,7 @@ from widgets.datasets.dimReduction.pcaFrame import PCAFrame
 from widgets.datasets.dimReduction.umapFrame import UMAPFrame
 
 # Dictionnary associating models names to corresponding frame class (customtkinter)
-MODEL_FRAMES = {"Decision tree": DecisionTreeFrame, "Random forest": RandomForestFrame, "Support Vector Machine": SvmFrame}
+MODEL_FRAMES = {"Decision tree": DecisionTreeFrame, "Random forest": RandomForestFrame, "Support Vector Machine": SvmFrame, "Fuzzy classifier": FuzzyFrame}
 
 # Dictionnary associating resampling method names to corresponding frame class (customtkinter)
 RESAMPLING_FRAMES = {"SMOTE": SMOTEFrame, "ADASYN": ADASYNFrame, "None": ()}

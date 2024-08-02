@@ -182,7 +182,8 @@ def run(X, y, grader, base, deferral, resampling, percentage, rand_split):
     y_grader[indexes] = 1 # Label 0: classified correctly / label 1: classified incorrectly
 
     # Data augmentation
-    X_grader, y_grader = resampling.fit_resample(X_grader, y_grader)
+    if resampling:
+        X_grader, y_grader = resampling.fit_resample(X_grader, y_grader)
 
     # Train
     grader = grader.fit(X_grader, y_grader)
