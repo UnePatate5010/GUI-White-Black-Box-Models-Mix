@@ -29,7 +29,7 @@ This section gives an overview of the GUI architecture and explain how it can be
 Adding Datasets
 ---------------
 
-Datasets can be simply added to the `datasets/` directory. They must be `csv` files wiuth separated by commas (`,`). The first columns are
+Datasets can be simply added to the `datasets/` directory. They must be `csv` files with separated by commas (`,`). The first columns are
 values of the different features and the last column is the label. Each line corresponds to a different data point. For instance, files must
 look like this::
 
