@@ -45,6 +45,13 @@ The file must be run from the root of the project.
 
  It will open a window with different scrollable menus. Models, datasets and resampling method can be selected using the said menus. Some parameters will then be displayed and can be tweaked to tune the experiment. When everything is set, press the `run` button to launch the experiment. Results will then be displayed in dedicated frames.
 
+## Documentation
+The documentation is located in `docs/source`. It can be compiled by using `./make html` (windows) or `make html` (linux). The compiled documentation
+will be in `docs/build/html`. Please be sure to install Sphinx by running the following commamd:
+
+```console
+pip install -r ./requirements_docs.txt
+```
 
 ## Issues & Warnings
 
@@ -52,9 +59,9 @@ Please refer to the [github issues section](https://github.com/UnePatate5010/GUI
 
 ## Expansions
 Different expansions are currently being considered. All of them might no be implemented though.
-- Documentation (user and developer)
+- ~~Documentation (user and developer)~~
 - Support for different datasets file types (currently only CSV files with a specific format are supported)
-- More data resampling methods and classifier (especially fuzzy classifiers)
+- More data resampling methods and classifier ~~(especially fuzzy classifiers)~~
 - More QoL features ?
 
 ## Gallery
