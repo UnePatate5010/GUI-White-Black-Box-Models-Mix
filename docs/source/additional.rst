@@ -14,6 +14,8 @@ in the `./src/main.py` file with the following lines:
         customtkinter.set_appearance_mode("light")  # light theme
         customtkinter.set_appearance_mode("dark")   # dark theme
 
+Or the theme can be specified in command line when running the GUI by adding either "light" or "dark" argument.
+
 For instance, the two themes look like:
 
 .. image:: img/dark.png

@@ -1,3 +1,4 @@
+import sys
 import customtkinter as ctk
 from widgets.scrollFrame import ScrollFrame
 from widgets.datasets.datasetFrame import DatasetFrame
@@ -125,6 +126,16 @@ class GUI(ctk.CTk):
             raise UnselectedItemError("Missing items", error)
         return L
 
-window = GUI()
-window.protocol("WM_DELETE_WINDOW", window.quit) # Prevent some errors related to matplotlib plots not closing correctly
-window.mainloop()
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        color = sys.argv[1]
+        try:
+            ctk.set_appearance_mode(color)
+        except:
+            print("Color should be either \"dark\" or \"light\".")
+    elif len(sys.argv) > 2:
+        print("Too many arguments. There should be only one that is either \"dark\" or \"light\". Arguments ignored")
+
+    window = GUI()
+    window.protocol("WM_DELETE_WINDOW", window.quit) # Prevent some errors related to matplotlib plots not closing correctly
+    window.mainloop()

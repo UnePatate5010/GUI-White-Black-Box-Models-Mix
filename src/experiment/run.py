@@ -149,8 +149,8 @@ def run(X, y, grader, base, deferral, resampling, percentage, rand_split):
     :type percentage: float
     :param rand_split: if the split is randomized or not
     :type rand_split: boolean
-    :return: Trained model, trained grader, trained base classifier, trained deferral classifier, statistics, training_set, validation_set
-    :rtype: class, class, class, class, tuple(float, int, float, float), tuple(list, list), tuple(list, list)
+    :return: Trained model, trained grader, trained base classifier, trained deferral classifier, statistics, training_set, validation_set, grader set, grader resampled set
+    :rtype: class, class, class, class, tuple(float, int, float, float), tuple(list, list), tuple(list, list), tuple(list, list), tuple(list, list)
     """
 
     # Training and validation set
@@ -182,10 +182,13 @@ def run(X, y, grader, base, deferral, resampling, percentage, rand_split):
     y_grader[indexes] = 1 # Label 0: classified correctly / label 1: classified incorrectly
 
     # Data augmentation
-    X_grader, y_grader = resampling.fit_resample(X_grader, y_grader)
+    if resampling:
+        X_grader_n, y_grader_n = resampling.fit_resample(X_grader, y_grader)
+    else: 
+         X_grader_n, y_grader_n = X_grader, y_grader
 
     # Train
-    grader = grader.fit(X_grader, y_grader)
+    grader = grader.fit(X_grader_n, y_grader_n)
 
     # Fuse models
     model = Fuse(base, deferral, grader)
@@ -193,7 +196,7 @@ def run(X, y, grader, base, deferral, resampling, percentage, rand_split):
     # Get some stats
     stats = model.stats(X_val, y_val) + model.stats(X, y)
 
-    return model, grader, base, deferral, stats, (X, y), (X_val, y_val)
+    return model, grader, base, deferral, stats, (X, y), (X_val, y_val), (X_grader, y_grader), (X_grader_n, y_grader_n)
 
 
 # Different elements (returns indexes where elements of two arrays are different)
