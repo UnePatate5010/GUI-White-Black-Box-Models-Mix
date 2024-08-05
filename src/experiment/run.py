@@ -184,6 +184,8 @@ def run(X, y, grader, base, deferral, resampling, percentage, rand_split):
     # Data augmentation
     if resampling:
         X_grader_n, y_grader_n = resampling.fit_resample(X_grader, y_grader)
+    else: 
+         X_grader_n, y_grader_n = X_grader, y_grader
 
     # Train
     grader = grader.fit(X_grader_n, y_grader_n)
