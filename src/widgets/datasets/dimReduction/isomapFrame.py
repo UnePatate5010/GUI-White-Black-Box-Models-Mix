@@ -21,7 +21,7 @@ class IsomapFrame(ctk.CTkScrollableFrame, EmbeddedScrollFrame):
         self.labels[-1].grid(row=0, column=0, padx=10, pady=10, sticky="w")
         CTkToolTip(self.labels[-1], "Number of neighbors to consider for each point. If n_neighbors is an int, then radius must be None.")
         self.entries.append(Spinbox(self, minimum_value=1, none_enable=True))
-        self.entries[-1].set(5) # Default value
+        self.entries[-1].set(10) # Default value
         self.entries[-1].grid(row=0, column=1, padx=10, pady=10, sticky="we")
 
         # Radius
