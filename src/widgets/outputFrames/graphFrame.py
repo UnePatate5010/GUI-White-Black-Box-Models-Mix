@@ -59,7 +59,7 @@ class GraphFrame(ctk.CTkFrame):
             self.canvas.get_tk_widget().grid(row=1, column=0, columnspan=3, padx=10, pady=10, sticky="ewsn")
 
 
-    def draw(self, X, y, X_val, y_val, model, grader):
+    def draw(self, X, y, X_val, y_val, model, grader, X_grad, y_grad, X_grad_n, y_grad_n):
         """This method plots a graph to display result of the experiments. It is called by the RunFrame (run button).
 
         :param X: The dataset
@@ -74,6 +74,14 @@ class GraphFrame(ctk.CTkFrame):
         :type model: class
         :param grader: Trained grader
         :type grader: class
+        :param X_grad: grader set
+        :type X_grad: list
+        :param y_grad: grader labels
+        :type y_grad: list
+        :param X_grad_n: grader resampled set
+        :type X_grad_n: list
+        :param y_grad_n: grader resampled labels
+        :type y_grad_n: list
         """
         plt.close("all")
 
@@ -200,6 +208,18 @@ class GraphFrame(ctk.CTkFrame):
         labels.append('Hard region')
         plot4.legend(handles=handles, labels=labels)
         plot4.title.set_text("Graph of the dataset with the decision boundaries of the base and deferral classifiers (test set)")
+
+        # Grader training set
+        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
+        plot5 = self.fig[-1].add_subplot(111)
+        plot5.scatter(X_grad[:, 0], X_grad[:, 1], c=y_grad, cmap="bwr")
+        plot5.title.set_text("Graph of the grader training set (before resampling)")
+
+        # Grader training set (resampled)
+        self.fig.append(Figure(figsize = (10, 5), dpi = 100, facecolor="white"))
+        plot6 = self.fig[-1].add_subplot(111)
+        plot6.scatter(X_grad_n[:, 0], X_grad_n[:, 1], c=y_grad_n, cmap="bwr")
+        plot6.title.set_text("Graph of the grader training set (after resampling)")
 
         # Display first figure
         self.canvas = FigureCanvasTkAgg(self.fig[0], master = self)
