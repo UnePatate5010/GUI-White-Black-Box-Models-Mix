@@ -58,7 +58,7 @@ pip install -r ./requirements_docs.txt
 Please refer to the [github issues section](https://github.com/UnePatate5010/GUI-White-Black-Box-Models-Mix/issues).
 
 ## Expansions
-Different expansions are currently being considered. All of them might no be implemented though.
+Different expansions are currently being considered. All of them might not be implemented though.
 - ~~Documentation (user and developer)~~
 - Support for different datasets file types (currently only CSV files with a specific format are supported)
 - More data resampling methods and classifier ~~(especially fuzzy classifiers)~~
