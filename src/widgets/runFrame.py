@@ -50,6 +50,8 @@ class RunFrame(ctk.CTkFrame):
         # Update output frames with results
         if len(X[0]) <= 2: # Draw only if 2D
             self.master.graph.draw(X, y, X_test, y_test, model, grader, X_grad, y_grad, X_grad_n, y_grad_n)
+        else:
+            self.master.graph.clean()
         self.master.stats.set(accuracy_test = round(stats[0], 3), 
                               nb_hard_test = str(stats[1]) + " out of " + str(len(X_test)) + " elements (" + str(round(stats[1]/len(X_test) * 100, 3)) + "%)", 
                               accuracy_base_test = round(stats[2], 3), 
