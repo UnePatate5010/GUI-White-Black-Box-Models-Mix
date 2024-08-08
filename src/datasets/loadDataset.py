@@ -20,6 +20,6 @@ def loadDataset(path):
         for row in reader:
             X.append(row[:-1])
             y.append(row[-1])
-    X = np.array(X).astype(np.float16)
+    X = np.array(X).astype(np.float32)
     y = np.array(y).astype(np.int16)
     return X, y
