@@ -30,7 +30,7 @@ Adding Datasets
 ---------------
 
 Datasets can be simply added to the `datasets/` directory. They must be `csv` files with separated by commas (`,`). The first columns are
-values of the different features and the last column is the label. Each line corresponds to a different data point. For instance, files must
+values of the different features and the last column is the label. The label must be an integer. Each line corresponds to a different data point. For instance, files must
 look like this::
 
     1.7226817454900973,0.615281065045062,1
