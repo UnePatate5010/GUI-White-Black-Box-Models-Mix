@@ -47,7 +47,7 @@ The file must be run from the root of the project.
 
 ## Documentation
 The documentation is located in `docs/source`. It can be compiled by using `./make html` (windows) or `make html` (linux). The compiled documentation
-will be in `docs/build/html`. Please be sure to install Sphinx by running the following commamd:
+will be in `docs/build/html` (open the `index.html` file in your web browser). Please be sure to install Sphinx by running the following commad:
 
 ```console
 pip install -r ./requirements_docs.txt
