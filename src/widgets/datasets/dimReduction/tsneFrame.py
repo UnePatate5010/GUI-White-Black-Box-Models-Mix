@@ -20,7 +20,7 @@ class TSNEFrame(ctk.CTkScrollableFrame, EmbeddedScrollFrame):
         self.labels.append(ctk.CTkLabel(self, text="Perplexity", wraplength=master.winfo_width()//2 - 20, justify="left", padx=10))
         self.labels[-1].grid(row=0, column=0, padx=10, pady=10, sticky="w")
         CTkToolTip(self.labels[-1], "The perplexity is related to the number of nearest neighbors that is used in other manifold learning algorithms. Larger datasets usually require a larger perplexity. Consider selecting a value between 5 and 50.")
-        self.entries.append(Spinbox(self, minimum_value=5, none_enable=False))
+        self.entries.append(Spinbox(self, minimum_value=5, type=float, none_enable=False))
         self.entries[-1].set(30) # Default value
         self.entries[-1].grid(row=0, column=1, padx=10, pady=10, sticky="we")
 

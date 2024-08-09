@@ -67,7 +67,7 @@ class DatasetFrame(ctk.CTkFrame):
             self.test_label = ctk.CTkLabel(self, text="Percentage of the test set", wraplength=self.winfo_width()//2 - 20, justify="left", padx=10)
             self.test_label.grid(row=2, column=0, padx=10, pady=10, sticky="w")
             CTkToolTip(self.test_label, "The percentage of the dataset that will be used as a test set")
-            self.test_spinbox = Spinbox(self, minimum_value=1, none_enable=False)
+            self.test_spinbox = Spinbox(self, minimum_value=1, maximum_value=99, type=float, none_enable=False)
             self.test_spinbox.set(20) # Default value
             self.test_spinbox.grid(row=2, column=1, padx=10, pady=10, sticky="we")
 
