@@ -12,6 +12,8 @@ class Spinbox(ctk.CTkFrame):
                  step_size: Union[int, float] = 1,
                  command: Callable = None,
                  minimum_value = -1000,
+                 maximum_value = float("inf"),
+                 type = int,
                  none_enable = True,
                  **kwargs):
         super().__init__(*args, width=width, height=height, **kwargs)
@@ -19,6 +21,8 @@ class Spinbox(ctk.CTkFrame):
         self.step_size = step_size
         self.command = command
         self.minimum_value = minimum_value
+        self.maximum_value = maximum_value
+        self.type = type
         self.none_enable = none_enable
 
         self.configure(fg_color=("gray78", "gray28"))  # set frame color
@@ -47,8 +51,12 @@ class Spinbox(ctk.CTkFrame):
             if self.entry.get() == "None":
                 self.entry.delete(0, "end")
                 self.entry.insert(0, self.minimum_value)
-            else:
-                value = int(self.entry.get()) + self.step_size
+            elif self.type(self.entry.get()) + self.step_size < self.maximum_value:
+                value = self.type(self.entry.get()) + self.step_size
+                self.entry.delete(0, "end")
+                self.entry.insert(0, value)
+            elif self.maximum_value != float("inf"):
+                value = self.maximum_value
                 self.entry.delete(0, "end")
                 self.entry.insert(0, value)
         except ValueError:
@@ -61,22 +69,27 @@ class Spinbox(ctk.CTkFrame):
             if self.entry.get() == "None":
                 self.entry.delete(0, "end")
                 self.entry.insert(0, self.minimum_value)
-            elif int(self.entry.get()) > self.minimum_value:
-                value = int(self.entry.get()) - self.step_size
+            elif self.type(self.entry.get()) - self.step_size> self.minimum_value:
+                value = self.type(self.entry.get()) - self.step_size
                 self.entry.delete(0, "end")
                 self.entry.insert(0, value)
             elif self.none_enable:
                 self.entry.delete(0, "end")
                 self.entry.insert(0, "None")
+            else:
+                value = self.minimum_value
+                self.entry.delete(0, "end")
+                self.entry.insert(0, value)
+
         except ValueError:
             return
 
-    def get(self) -> Union[int, None]:
+    def get(self):
         val = self.entry.get()
         if val == None:
             return None
         try:
-            return int(val)
+            return self.type(val)
         except ValueError:
             return None
 
@@ -85,7 +98,7 @@ class Spinbox(ctk.CTkFrame):
         if value == None:
             self.entry.insert(0, "None")
         elif value >= self.minimum_value:
-            self.entry.insert(0, str(int(value)))
+            self.entry.insert(0, str(self.type(value)))
         else:
             raise ValueError("Value too low")
 
