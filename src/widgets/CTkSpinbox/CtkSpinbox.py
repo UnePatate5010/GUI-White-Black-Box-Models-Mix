@@ -51,7 +51,7 @@ class Spinbox(ctk.CTkFrame):
             if self.entry.get() == "None":
                 self.entry.delete(0, "end")
                 self.entry.insert(0, self.minimum_value)
-            elif self.type(self.entry.get()) + self.step_size < self.maximum_value:
+            elif self.type(self.entry.get()) + self.step_size <= self.maximum_value:
                 value = self.type(self.entry.get()) + self.step_size
                 self.entry.delete(0, "end")
                 self.entry.insert(0, value)
@@ -69,7 +69,7 @@ class Spinbox(ctk.CTkFrame):
             if self.entry.get() == "None":
                 self.entry.delete(0, "end")
                 self.entry.insert(0, self.minimum_value)
-            elif self.type(self.entry.get()) - self.step_size> self.minimum_value:
+            elif self.type(self.entry.get()) - self.step_size >= self.minimum_value:
                 value = self.type(self.entry.get()) - self.step_size
                 self.entry.delete(0, "end")
                 self.entry.insert(0, value)
