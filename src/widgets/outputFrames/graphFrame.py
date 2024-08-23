@@ -229,4 +229,6 @@ class GraphFrame(ctk.CTkFrame):
 
     def clean(self):
         if self.canvas != None:
+            plt.close("all")
+            self.fig = []
             self.canvas.get_tk_widget().grid_forget()
