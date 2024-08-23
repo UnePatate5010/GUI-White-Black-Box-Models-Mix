@@ -89,7 +89,7 @@ class StatsFrame(ctk.CTkScrollableFrame):
         """
         Method used to set fields of the the frame
 
-        :param kwargs: Dictionnary of associating a statistic to a value
+        :param kwargs: Dictionnary associating a statistic to a value
         :kwargs; dict
         """
         for key, value in kwargs.items():
