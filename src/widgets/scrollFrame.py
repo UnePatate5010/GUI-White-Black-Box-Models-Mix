@@ -10,8 +10,8 @@ from widgets.widgetExceptions import *
 
 class ScrollFrame(ctk.CTkFrame):
     """
-    This class represents a frame with a scollable menu. The said menu is constitued of provided elements.
-    The frame display input fields depending on the element selected in the scrollable menu.
+    This class represents a frame with a scrollable menu. The said menu is constitued of provided elements.
+    The frame displays input fields depending on the element selected in the scrollable menu.
     
     :param master: The master frame/window of this frame
     :type master: class
