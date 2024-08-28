@@ -66,7 +66,7 @@ Different expansions are currently being considered. All of them might not be im
 
 ## Research
 This project led to the writing of a research paper entitled "Enhancing Machine Learning Interpretability Through a Graphical User Interface". It was accepted at the
-[SCIS&ISIS2024](http://soft-cr.org/scis/2024/) conference in Himeji, Japan. IT will be presented between Nov. 9th and 12th.
+[SCIS&ISIS2024](http://soft-cr.org/scis/2024/) conference in Himeji, Japan. It will be presented between Nov. 9th and 12th.
 
 ## Gallery
 
