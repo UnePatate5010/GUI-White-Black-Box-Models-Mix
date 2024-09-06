@@ -99,14 +99,25 @@ class fuzzyClassifier():
         ax.legend(loc='upper right', shadow=True)
         plt.title(fuzzy_variable.name)
         return (fig, ax)
-        
+    
+    def plot_rules(self):
+        """Plot rules as "IF 1 High with..."
+
+        :return: fig, ax
+        """
+        text = self.classifier.print_rules(True)
+        fig, ax = plt.subplots()
+        ax.axis('off')
+        ax.text(0.5, 0.5, text, ha='center', va='center')
+        return (fig, ax)
 
     def plot_fuzzy(self):
         '''
-        Plot the fuzzy partitions in each fuzzy variable.
+        Plot the fuzzy partitions in each fuzzy variable, as well as rules (text).
         '''
         fuzzy_variables = self.classifier.rule_base.rule_bases[0].antecedents
         l = []
         for ix, fv in enumerate(fuzzy_variables):
             l.append(self.plot_fuzzy_variable(fv))
+        l.append(self.plot_rules())
         return l
