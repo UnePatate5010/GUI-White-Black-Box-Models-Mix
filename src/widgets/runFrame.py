@@ -12,11 +12,21 @@ class RunFrame(ctk.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
 
-        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure((0, 1, 2), weight=1)
         self.grid_rowconfigure(0, weight=1)
 
         self.run_button = ctk.CTkButton(self, text="RUN", command=self.button_callback, fg_color="#6aa51f", hover_color="#426713")
-        self.run_button.grid(row=0, column=0, padx=10, pady=10, sticky="news")
+        self.run_button.grid(row=0, column=1, columnspan=2, padx=2, pady=2, sticky="news")
+
+        self.run_button = ctk.CTkButton(self, text="Theme", command=self.button_theme)
+        self.run_button.grid(row=0, column=0, padx=2, pady=2, sticky="news")
+
+    def button_theme(self):
+        current = ctk.get_appearance_mode()
+        if current == "Dark":
+            ctk.set_appearance_mode("light")
+        else:
+            ctk.set_appearance_mode("dark")
     
     def button_callback(self):
         # Freeze all fields
