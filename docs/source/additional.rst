@@ -16,6 +16,8 @@ in the `./src/main.py` file with the following lines:
 
 Or the theme can be specified in command line when running the GUI by adding either "light" or "dark" argument.
 
+As a latter addition, a button at the bottom right can be clicked to change theme.
+
 For instance, the two themes look like:
 
 .. image:: img/dark.png
