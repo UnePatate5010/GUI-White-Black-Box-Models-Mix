@@ -94,3 +94,9 @@ Modifying Outputs
 -----------------
 
 ALl output frames are in `src/widgets/outputFrames/`. Each one makes its own graphs and schemas from given parameters.
+
+
+Documentation
+-------------
+
+The source file of the documentation are located in `docs/source/`. There, you can freely modify or add new files to expand as you wish the documentation.
