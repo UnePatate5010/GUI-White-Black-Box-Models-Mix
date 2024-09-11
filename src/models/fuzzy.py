@@ -108,7 +108,7 @@ class fuzzyClassifier():
         text = self.classifier.print_rules(True)
         fig, ax = plt.subplots()
         ax.axis('off')
-        ax.text(0.5, 0.5, text, ha='center', va='center')
+        ax.text(0.5, 0.5, text, ha='center', va='center', fontsize= 'x-small')
         return (fig, ax)
 
     def plot_fuzzy(self):
