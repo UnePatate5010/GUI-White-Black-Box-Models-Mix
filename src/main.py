@@ -94,7 +94,7 @@ class GUI(ctk.CTk):
         self.run.unfreeze()
 
     def get(self):
-        """Returns a dictionnary wich associate each input frame to a dictionnary of inputed values.
+        """Returns a list of value inputed by the user in the different frames.
     
         :raises UnselectedItemError: raises an error if a field was not properly filled.
         :return: A List of values inputed by the user in each frame.
