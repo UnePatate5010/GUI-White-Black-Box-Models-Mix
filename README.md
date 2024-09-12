@@ -1,3 +1,5 @@
+# I will no longer maintain this project. It will now be hosted by the Computational Intelligence Laboratory of Osaka Metropolitan University. [Click here for their newer version](https://github.com/ci-labo-omu/GUI-White-Black-Box-Models-Mix)
+
 # GUI-White-Black-Box-Models-Mix
 
 This repository contains the code of a GUI developed during a 3-month internship in the Computer Intelligence Laboratory of Osaka Metropolitan University under the supervision of Professor Yusuke Nojima.
