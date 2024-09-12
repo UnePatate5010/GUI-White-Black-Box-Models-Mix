@@ -99,4 +99,4 @@ ALl output frames are in `src/widgets/outputFrames/`. Each one makes its own gra
 Documentation
 -------------
 
-The source file of the documentation are located in `docs/source/`. There, you can freely modify or add new files to expand as you wish the documentation.
+The source files of the documentation are located in `docs/source/`. There, you can freely modify or add new files to expand as you wish the documentation.
