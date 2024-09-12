@@ -47,8 +47,8 @@ Input Frames
 ~~~~~~~~~~~~
 
 Input frames provides different entries that are used to select different parameters. Entries are divided in two categories.
-The first one is scrollable menus. Those provides different options and one needs to be selected. The second type of entries is 
-spinboxes. Those are composed of one text entry in which numbers can be inputed, and two buttons to increment or decrement the value of the spinbox.
+The first one is scrollable menu. It provides different options and one needs to be selected. The second type of entries is 
+spinbox. It is composed of one text entry in which numbers can be inputed, and two buttons to increment or decrement the value of the spinbox.
 The following images shows examples of input frames:
 
 .. image:: img/grader_ex.png
